@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  robot:
+    build:
+      dockerfile: Dockerfile
+      context: ./RobotFramework
+    ports:
+      - "3008:3008"
+    networks:
+      - 3d-web
+
+networks:
+  3d-web:
+    driver: bridge
