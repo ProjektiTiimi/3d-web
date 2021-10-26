@@ -7,9 +7,9 @@ services:
       context: ./RobotFramework
     ports:
       - "3008:3008"
-    networks:
-      - 3d-web
+    tty: true
+  mongo:
+    image: mongo
+    ports:
+      - "2717:27017"
 
-networks:
-  3d-web:
-    driver: bridge

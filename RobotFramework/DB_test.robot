@@ -6,7 +6,7 @@ Library   RobotMongoDBLibrary.Find
 Library   RobotMongoDBLibrary.Delete
 
 *** Variables ***
-&{MONGODB_CONNECT_STRING}=  connection=mongodb://mongodb-test:27017  database=UusiDB   collection=customers
+&{MONGODB_CONNECT_STRING}=  connection=mongodb://3d-web-mongo-1:27017  database=UusiDB   collection=customers
 &{NewCustomer}=   YTunnus=1234test      asiakkaanNimi=robot      postitusosoite=Framework     postinumero=1234    toimipaikka=robotland
 &{ModifiedCustomer}=   YTunnus=1234Edit      asiakkaanNimi=robotEdit      postitusosoite=FrameworkEdit     postinumero=12345    toimipaikka=robotlandEdit
 
