@@ -1,10 +1,6 @@
 import {Express, Request, Response} from "express";
 
 function routes(app: Express){
-    app.get('/healthcheck', (req: Request, res: Response) => {
-        res.sendStatus(200);
-    });
-
     // GET customer
     app.get('/customer/:id', (req: Request, res: Response) =>{
         res.status(200).send("GET customer");
