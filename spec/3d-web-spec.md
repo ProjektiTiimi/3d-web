@@ -32,7 +32,7 @@ tai
 ![Näytä lista asiakkaista](media/kuva2-3d.png "Listanäkymä")
 
 3. Luodaan lasku
-- tarkistetaan tiedot
+- tarkistetaan asiakkaan tiedot
 - syötetään rivitieto ja summa
 - mahdollisuus syöttää s-posti ja puhelinnumero laskun lähettämistä varten
 
