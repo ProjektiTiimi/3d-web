@@ -15,4 +15,4 @@ Tulostuksen pitää toimia puhelimellakin ja nappeihin pitää osua myös pakkas
 * Git 
 * Slack
 
-./media/kuva1-3d.png
+(media/kuva1-3d.png "Aloitusnäkymä")
