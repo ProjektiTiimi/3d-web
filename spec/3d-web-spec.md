@@ -67,8 +67,7 @@ API, jolla hallinnoidaan asiakastietoja
 7. Virtuaaliviivakoodin luonti
 8. Viivakoodin luonti
 9. QR-koodin luonti
-10. API asiakastietojen muokkaukseen
-11. API laskuttajatietojen oletusarvojen muokkaukseen
+10. API laskuttajatietojen oletusarvojen muokkaukseen
 
 ## Ei-toiminnalliset vaatimukset
 
