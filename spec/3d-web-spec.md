@@ -64,3 +64,13 @@ API, jolla hallinnoidaan asiakastietoja
 9. QR-koodin luonti
 10. API asiakastietojen muokkaukseen
 11. API laskuttajatietojen oletusarvojen muokkaukseen
+
+## Ei-toiminnalliset vaatimukset
+
+1. Käyttäjän tulee tunnistautua käyttäjätunnuksella ja salasanalla
+- alussa 1 käyttäjä riittää
+- myös apikey käy tunnistautumiseksi.
+3. Asikastiedot tulee salata levylle kirjoitettaessa esim. MongoDB kannassa.
+4. PDF laskuja ei tarvi salata levyllä
+
+
