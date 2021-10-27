@@ -34,9 +34,14 @@ tai
 3. Luodaan lasku
 - tarkistetaan asiakkaan tiedot
 - syötetään rivitieto ja summa
-- mahdollisuus syöttää s-posti ja puhelinnumero laskun lähettämistä varten
+- Näytetään laskuttajan s-postiosoite, johon lasku automaattisesti lähetetään luonnin jälkeen.
 
 ![Luo lasku](media/kuva3-3d.png "Laskun luonti")
+
+4. Näytetään pdf-lasku
+- näytetään pdf-lasku käyttöliittymällä, kun se on luotu
+- mahdollsuus lähettää se edelleen suoraan puhelimelta käyttäen puhelimen omia toimintoja.
+
 
 ## Hallinnointi
 
@@ -50,7 +55,7 @@ API, jolla hallinnoidaan asiakastietoja
 - Nimi
 - Osoite
 - Puhelinnumero
-- sähköposti
+- Sähköposti
 4. Laskun perustiedot ks. https://laskut.online
 - tilinumero
 - laskunnumero (juokseva numero)
