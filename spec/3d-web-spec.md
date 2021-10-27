@@ -74,7 +74,7 @@ API, jolla hallinnoidaan asiakastietoja
 1. Käyttäjän tulee tunnistautua käyttäjätunnuksella ja salasanalla
 - alussa 1 käyttäjä riittää
 - myös apikey käy tunnistautumiseksi.
-3. Asikastiedot tulee salata levylle kirjoitettaessa esim. MongoDB kannassa.
+3. Asiakastiedot tulee salata levylle kirjoitettaessa esim. MongoDB kannassa.
 4. PDF laskuja ei tarvi salata levyllä
 
 
