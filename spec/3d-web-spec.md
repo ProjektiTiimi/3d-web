@@ -14,3 +14,5 @@ Tulostuksen pitää toimia puhelimellakin ja nappeihin pitää osua myös pakkas
 ## Työkalut 
 * Git 
 * Slack
+
+./media/kuva1-3d.png
