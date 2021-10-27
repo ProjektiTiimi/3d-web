@@ -37,3 +37,30 @@ tai
 - mahdollisuus syöttää s-posti ja puhelinnumero laskun lähettämistä varten
 
 ![Luo lasku](media/kuva3-3d.png "Laskun luonti")
+
+## Hallinnointi
+
+API, jolla hallinnoidaan asiakastietoja
+
+1. Asikkaiden tuonti järjestelmään 
+- API, jolla voi tuoda 1-n kpl asiakkaita csv/json tiedostona.
+2. Asiakastietojen muokkaus
+3. Laskuttajan oletustietojen luonti ks. https://laskut.online
+- Y-tunnus
+- Nimi
+- Osoite
+- Puhelinnumero
+- sähköposti
+4. Laskun perustiedot ks. https://laskut.online
+- tilinumero
+- laskunnumero (juokseva numero)
+- maksuehto 
+   - päivien lkm, joka lisätään luontipäivään. Käytetään siis eräpäivän luontiin.
+5. Viitteen luonti
+- asiakasnro + laskunnro + tarkistussumma
+6. pdf laskun luonti
+7. Virtuaaliviivakoodin luonti
+8. Viivakoodin luonti
+9. QR-koodin luonti
+10. API asiakastietojen muokkaukseen
+11. API laskuttajatietojen oletusarvojen muokkaukseen
