@@ -8,6 +8,12 @@ services:
     ports:
       - "3008:3008"
     tty: true
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    ports:
+      - "3000:3000"
   mongo:
     image: mongo
     ports:
