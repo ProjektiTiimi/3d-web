@@ -1,0 +1,5 @@
+FROM mongo:5
+
+ENV MONGO_INITDB_DATABASE UusiDB
+
+

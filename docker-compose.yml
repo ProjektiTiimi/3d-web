@@ -15,7 +15,16 @@ services:
     ports:
       - "3000:3000"
   mongo:
-    image: mongo
+    build:
+      dockerfile: Dockerfile
+      context: ./backend/database
     ports:
-      - "2717:27017"
-
+      - "27019:27017"
+    tty: true
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend/api
+    ports:
+      - "1337:1337"
+    tty: true

@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:8.11.4
+FROM node:16-alpine
 
 WORKDIR /api
 
@@ -8,6 +8,6 @@ RUN npm install
 
 COPY . /api/
 
-EXPOSE 80
+EXPOSE 1337
 
 CMD ["npm", "run", "dev"]

@@ -1,4 +1,4 @@
 export default {
     PORT: 1337,
-    DBURI: 'mongodb://localhost:2717/UusiDB'
+    DBURI: 'mongodb://3d-web-mongo-1:27017/UusiDB'
 } 
