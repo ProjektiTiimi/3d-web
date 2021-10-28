@@ -6,8 +6,10 @@ import routes from './routes';
 const port = config.get<number>('PORT');
 const app = express();
 
+app.use(express.json());
+
 app.listen(port, async () => {
     console.log("Listening...");
-    //await connect();
+    await connect();
     routes(app);
 });
