@@ -1,23 +1,33 @@
-import express from 'express';
-import config from 'config';
-import connect from './utils/connect';
-import routes from './routes';
+import express, { Application, NextFunction, Request, Response} from 'express';
+import connect from './connect';
+import * as CustomerController from './routes/customerRoutes';
+import {PORT, DBURI} from './config/config';
 
-const port = config.get<number>('PORT');
-const app = express();
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const app: Application = express();
+const db: string = DBURI;
 
-//MIDDLEWARES
-app.use(bodyParser.json());
+// Connect to db
+connect(db);
+app.set("port", PORT);
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}))
 
-//Import routes
-const CustomersRoute = require('./Routes/customers');
-app.use('/customers', CustomersRoute);
+// API endpoints
+// ***************************************
+// test can be removed
+app.get('/test', (req, res)=> {
+    res.json("Test");
+});
+// ***************************************
+app.get("/customers", CustomerController.allCustomers);
+app.get("/customer/:id", CustomerController.getCustomer);
+app.post("/customer", CustomerController.addCustomer);
+app.delete("/customer/:id", CustomerController.deleteCustomer);
+app.patch ("/customer/:id", CustomerController.updateCustomer);
 
+const server = app.listen(app.get("port"), () => {
+    console.log("App running on port ", app.get("port"));
 
-app.listen(port, async () => {
-    console.log("Listening...");
-    connect();
-    routes(app);
 });
