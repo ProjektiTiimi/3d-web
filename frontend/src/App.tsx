@@ -11,6 +11,8 @@ import Homepage from './components/Homepage';
 import Navigation from './components/Navigation';
 import Customerlist from './components/Customerlist';
 import Invoice from './components/Invoice';
+import Addcustomer from './components/Addcustomer';
+import Editcustomer from './components/Editcustomer';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Navigation/>
         <Switch>
           <Route path="/" exact component={Homepage} />
+          <Route path="/addcustomer" component={Addcustomer} />
+          <Route path="/editcustomer" component={Editcustomer} />
           <Route path="/customers" component={Customerlist} />
           <Route path="/invoice" component={Invoice} />
         </Switch>    
