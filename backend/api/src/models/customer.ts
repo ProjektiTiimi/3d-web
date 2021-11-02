@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import {MongoClient} from "mongodb";
 
 export interface ICustomer extends mongoose.Document{
     YTunnus: String;
