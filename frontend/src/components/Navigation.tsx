@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 function Navigation() {
     return(
         <div className="navigationBar">
-            <h3>Navigaatio tähän? Jotain tekstiä ehkä</h3>
             <ul>
                 <Link to="/">
                     <li>Etusivulle</li>
