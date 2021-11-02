@@ -9,7 +9,7 @@ const Homepage: React.FunctionComponent = () => {
     return(
         <form>
             <h2>
-            <input type="text" className="inputtesti" value={inputText} />
+            <input type="text" className="inputtesti" />
             </h2>
             <h3>
                 {guideText}
