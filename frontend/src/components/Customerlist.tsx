@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Customer from '../models/customer';
-import CustomerDiv from '../models/customerDiv';
+import CustomerDiv from './customerDiv';
 
 
 function Customerlist(){
@@ -21,28 +21,34 @@ function Customerlist(){
     }, []);
 
     const ClickPrev = () =>{
-        if(counter > 0){
-            setCounter(counter -1)
+        if (counter>0 && counter < 10){
+            setCounter(0)
+        }
+        else if(counter > 1){
+            setCounter(counter -10)
         }
     }
     const ClickNext = () =>{
-        if(counter+2 < total){
-            setCounter(counter + 1)
+        if(counter < total && counter+20 > total){
+            setCounter(total-10)
+        }
+        else if(counter+20 < total){
+            setCounter(counter+10)
         }
     }
 
-    const showCustomers = customers.slice(counter, counter+2)
+    const showCustomers = customers.slice(counter, counter+10)
     console.log("showCustomers: "+showCustomers)
     return(
         <div className="customerList">
-            <h3>{counter+1}-{counter+2}/{total}</h3>
-            <button onClick={ClickPrev}> edelliset</button>
+            <h3>{counter+1}-{counter+10}/{total}</h3>
+            <button className="prevButton" onClick={ClickPrev}> edelliset</button>
             {showCustomers.map(Customer =>(
-                <CustomerDiv {...Customer}
+                <CustomerDiv key={Customer._id}{...Customer}
                 />
             ))}
-            <button onClick={ClickNext}>seuraavat</button>
-            <button onClick={getData}>Päivitä</button>
+            <button className="nextButton" onClick={ClickNext}>seuraavat</button>
+            <button className="updateButton" onClick={getData}>Päivitä</button>
         </div>
     )
 }
