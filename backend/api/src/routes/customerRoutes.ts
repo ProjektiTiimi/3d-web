@@ -48,11 +48,16 @@ export const updateCustomer = (req: Request, res: Response) => {
 
 // Delete customer
 export const deleteCustomer = (req: Request, res: Response) => {
-    const customer = Customer.deleteOne({ _id: req.params.id}, (err: any)=> {
+    const customer = Customer.findOne({_id: req.params.id}, (err: any) => {
         if (err){
-            res.send(err);
-        }else {
-            res.status(200).send(customer);
+            res.status(500).end();
+        }else{
+            Customer.deleteOne({_id: req.params.id});
+            if (err){
+                res.status(500).end();
+            } else{
+                res.status(200).end();
+            }
         }
     });
 
