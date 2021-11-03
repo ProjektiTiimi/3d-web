@@ -2,13 +2,30 @@ import React, { useState } from 'react';
 import Customer from '../models/customer';
 
 
-const Editcustomer = (givenCustomer:Customer) => {
+const Editcustomer = (costumerId:String) => {
+
+    const [customer, setCustomer] = React.useState<Customer>();
+    const getCostumer = customer
+    const getData = async () => {
+        const response = await fetch('http://localhost:1337/customer:' + costumerId, {
+            method:'GET',
+            headers:{'Content-type':'application/json',
+                    'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNTk0MTgxMH0.8uZ7uTubty3qblBZD3Tcdm7HqW1GlZMzJQ8icjaSMDU'}
+        });
+        const data = await response.json();
+        setCustomer(data)
+    }
+    React.useEffect(()=> {
+        getData();
+    }, []);
+
     const [input, setInput] = useState<Customer>({
-        YTunnus: givenCustomer.YTunnus,
-        asiakkaanNimi: givenCustomer.asiakkaanNimi,
-        Postitusosoite: givenCustomer.Postitusosoite,
-        Postinumero: givenCustomer.Postinumero,
-        Toimipaikka: givenCustomer.Toimipaikka
+        _id: "",
+        YTunnus: "",
+        asiakkaanNimi: "",
+        Postitusosoite: "",
+        Postinumero: "",
+        Toimipaikka: ""
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -19,10 +36,11 @@ const Editcustomer = (givenCustomer:Customer) => {
     }
 
     const handleClick = (): void =>{
-        fetch('http://localhost:1337/customer:' + givenCustomer._id, {
+        fetch('http://localhost:1337/customer', {
             method: 'PATCH',
             headers: { 'Content-type': 'application/json'},
             body: JSON.stringify({
+                _id: costumerId,
                 YTunnus: input.YTunnus,
                 asiakkaanNimi: input.asiakkaanNimi,
                 Postitusosoite: input.Postitusosoite,
@@ -50,7 +68,7 @@ const Editcustomer = (givenCustomer:Customer) => {
             <h3>Muokkaa asiakasta</h3>
                 <input 
                     type="text"
-                    placeholder="Y-Tunnus"
+                    placeholder={getCostumer?.YTunnus}
                     className="AddCustomer-input"
                     onChange={handleChange}
                     name="YTunnus"

@@ -21,7 +21,8 @@ const Addcustomer = () => {
     const handleClick = (): void =>{
         fetch('http://localhost:1337/customer', {
             method: 'POST',
-            headers: { 'Content-type': 'application/json'},
+            headers: { 'Content-type': 'application/json', 
+                        'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNTk0MTgxMH0.8uZ7uTubty3qblBZD3Tcdm7HqW1GlZMzJQ8icjaSMDU'},
             body: JSON.stringify({
                 YTunnus: input.YTunnus,
                 asiakkaanNimi: input.asiakkaanNimi,
