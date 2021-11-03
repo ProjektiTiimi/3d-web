@@ -39,6 +39,7 @@ app.patch ("/customer/:id", [authJwt.verifyToken], CustomerController.updateCust
 // User endpoints
 app.post("/user/register", UserController.registerUser);
 app.post("/user/login", UserController.authenticateUser);
+app.delete("/user/:id", [authJwt.verifyToken], UserController.deleteUser);
 // TODO: invoice endpoints
 
 const server = app.listen(app.get("port"), () => {
