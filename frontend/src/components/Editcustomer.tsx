@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import Customer from '../models/customer';
 
 
-const Editcustomer = () => {
+const Editcustomer = (givenCustomer:Customer) => {
     const [input, setInput] = useState<Customer>({
-        _id: "",
-        YTunnus: "",
-        asiakkaanNimi: "",
-        Postitusosoite: "",
-        Postinumero: "",
-        Toimipaikka: ""
+        YTunnus: givenCustomer.YTunnus,
+        asiakkaanNimi: givenCustomer.asiakkaanNimi,
+        Postitusosoite: givenCustomer.Postitusosoite,
+        Postinumero: givenCustomer.Postinumero,
+        Toimipaikka: givenCustomer.Toimipaikka
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -20,11 +19,10 @@ const Editcustomer = () => {
     }
 
     const handleClick = (): void =>{
-        fetch('http://localhost:1337/customer', {
-            method: 'POST',
+        fetch('http://localhost:1337/customer:' + givenCustomer._id, {
+            method: 'PATCH',
             headers: { 'Content-type': 'application/json'},
             body: JSON.stringify({
-                _id: input._id,
                 YTunnus: input.YTunnus,
                 asiakkaanNimi: input.asiakkaanNimi,
                 Postitusosoite: input.Postitusosoite,
