@@ -4,6 +4,7 @@ import Customer from '../models/customer';
 
 const Editcustomer = () => {
     const [input, setInput] = useState<Customer>({
+        _id: "",
         YTunnus: "",
         asiakkaanNimi: "",
         Postitusosoite: "",
@@ -23,6 +24,7 @@ const Editcustomer = () => {
             method: 'POST',
             headers: { 'Content-type': 'application/json'},
             body: JSON.stringify({
+                _id: input._id,
                 YTunnus: input.YTunnus,
                 asiakkaanNimi: input.asiakkaanNimi,
                 Postitusosoite: input.Postitusosoite,
