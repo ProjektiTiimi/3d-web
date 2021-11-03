@@ -1,27 +1,35 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import '../App.css'
+import styled from 'styled-components';
+
+const NavigationWrapper = styled.nav`
+    display: flex;
+    width: 80%;
+    margin: 24px auto 16px;
+    justify-content: space-between;
+`
 
 function Navigation() {
     return(
-        <div className="navigationBar">
-            <h3>Navigaatio tähän? Jotain tekstiä ehkä</h3>
-            <ul>
-                <Link to="/">
-                    <li>Etusivulle</li>
+        <div>
+            <NavigationWrapper>
+                <Link to="/" className="NavigationBar-link">
+                    Etusivulle
                 </Link>
-                <Link to="/customers">
-                    <li>Näytä asiakkaat</li>
+                <Link to="/customers" className="NavigationBar-link">
+                    Näytä asiakkaat
                 </Link>
-                <Link to="/addcustomer">
-                    <li>Lisää asiakas</li>
+                <Link to="/addcustomer" className="NavigationBar-link">
+                    Lisää asiakas
                 </Link>
-                <Link to="/editcustomer">
-                    <li>Muokkaa asiakasta</li>
+                <Link to="/editcustomer" className="NavigationBar-link">
+                    Muokkaa asiakasta
                 </Link>
-                <Link to="/invoice">
-                    <li>Lasku</li>
+                <Link to="/invoice" className="NavigationBar-link">
+                    Lasku
                 </Link>
-            </ul>
+            </NavigationWrapper>
         </div>
     )
 }

@@ -75,3 +75,22 @@
   color: white;
   border: none
 }
+
+.NavigationBar{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.NavigationBar-link{
+  background-color: #0b5468;
+  text-transform: capitalize;
+  color: white;
+  font-size: medium;
+  text-decoration: none;
+  min-width: 150px;
+  min-height: 30px;
+  text-align: center;
+  padding: 16px;
+  border-radius: 24px;
+}

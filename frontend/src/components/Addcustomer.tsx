@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
+import Customer from '../models/customer';
 
-interface ICustomer {
-        _id?: string,
-        YTunnus: string,
-        asiakkaanNimi: string,
-        Postitusosoite: string,
-        Postinumero: string,
-        Toimipaikka: string
-}
 
 const Addcustomer = () => {
-    const [input, setInput] = useState<ICustomer>({
+    const [input, setInput] = useState<Customer>({
         YTunnus: "",
         asiakkaanNimi: "",
         Postitusosoite: "",
@@ -26,7 +19,7 @@ const Addcustomer = () => {
     }
 
     const handleClick = (): void =>{
-        fetch('http://localhost:8040/customer', {
+        fetch('http://localhost:1337/customer', {
             method: 'POST',
             headers: { 'Content-type': 'application/json'},
             body: JSON.stringify({
