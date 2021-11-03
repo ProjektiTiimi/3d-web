@@ -8,6 +8,19 @@ import {PORT, DBURI} from './config/config';
 const app: Application = express();
 const db: string = DBURI;
 
+const cors=require("cors");
+
+const corsOptions ={
+
+   origin:'*',
+
+   credentials:true,            
+
+   optionSuccessStatus:200,
+
+}
+
+app.use(cors(corsOptions));
 // Connect to db
 connect(db);
 app.set("port", PORT);

@@ -52,3 +52,45 @@
   color: white;
   border: non
 }
+
+.AddCustomer{
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  margin: 5rem auto
+}
+
+.AddCustomer-input{
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin: 0.3rem 0rem
+}
+
+.AddCustomer-btn{
+  padding: 0.5rem;
+  cursor: pointer;
+  height: 60px;
+  background-color: #0b5468;
+  font-weight: 700;
+  color: white;
+  border: none
+}
+
+.NavigationBar{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.NavigationBar-link{
+  background-color: #0b5468;
+  text-transform: capitalize;
+  color: white;
+  font-size: medium;
+  text-decoration: none;
+  min-width: 150px;
+  min-height: 30px;
+  text-align: center;
+  padding: 16px;
+  border-radius: 24px;
+}
