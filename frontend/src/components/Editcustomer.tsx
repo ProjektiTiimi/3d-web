@@ -13,7 +13,7 @@ const Editcustomer = () => {
         const response = await fetch('http://localhost:1337/customer/' + id, {
             method:'GET',
             headers:{'Content-type':'application/json',
-                    'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjAxMzE0Nn0.J7WXTauzQrft0-EOb7jxvBCc4NQzlIpTR8P6HvMXzdE'}
+                    'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjAyOTM1MX0._9mpMIpYLJD_FwxjbfpjufnBM1MaV59FArj87tJGRl4'}
                      });
         const data = await response.json()
         console.log(data)
@@ -44,7 +44,7 @@ const Editcustomer = () => {
         fetch('http://localhost:1337/customer/' + id, {
             method: 'PATCH',
             headers: { 'Content-type': 'application/json',
-                        'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjAxMzE0Nn0.J7WXTauzQrft0-EOb7jxvBCc4NQzlIpTR8P6HvMXzdE'},
+                        'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjAyOTM1MX0._9mpMIpYLJD_FwxjbfpjufnBM1MaV59FArj87tJGRl4'},
             body: JSON.stringify({
                 YTunnus: input.YTunnus,
                 asiakkaanNimi: input.asiakkaanNimi,
@@ -73,7 +73,7 @@ const Editcustomer = () => {
             <h3>Muokkaa asiakasta</h3>
                 <input 
                     type="text"
-                    placeholder={"Y-Tunnus"}
+                    placeholder="Y-Tunnus"
                     className="AddCustomer-input"
                     onChange={handleChange}
                     name="YTunnus"
