@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Customer from '../models/customer';
 
-
+//url pitää olla muotoa http://localhost:3000/editcustomer/?id=61827ee5878942efcc8fb40b
 const Editcustomer = () => {
     const querystring = window.location.search;
     const urlParams = new URLSearchParams(querystring);
@@ -10,7 +10,7 @@ const Editcustomer = () => {
 
     const getData = async () => {
         console.log(id)
-        const response = await fetch('http://localhost:1337/customer/:' + id, {
+        const response = await fetch('http://localhost:1337/customer/' + id, {
             method:'GET',
             headers:{'Content-type':'application/json',
                     'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjAxMzE0Nn0.J7WXTauzQrft0-EOb7jxvBCc4NQzlIpTR8P6HvMXzdE'}
@@ -18,6 +18,7 @@ const Editcustomer = () => {
         const data = await response.json()
         console.log(data)
         setCustomer(data)
+        console.log(customer)
     }
 
     React.useEffect(()=> {
@@ -40,7 +41,7 @@ const Editcustomer = () => {
     }
 
     const handleClick = (): void =>{
-        fetch('http://localhost:1337/customer/:' + id, {
+        fetch('http://localhost:1337/customer/' + id, {
             method: 'PATCH',
             headers: { 'Content-type': 'application/json',
                         'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjAxMzE0Nn0.J7WXTauzQrft0-EOb7jxvBCc4NQzlIpTR8P6HvMXzdE'},
