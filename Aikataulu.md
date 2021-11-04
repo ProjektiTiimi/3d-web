@@ -20,7 +20,7 @@
 **Lisää toiminnallisuuksia - vko 46**
 
 **Tuotantovalmius - vko 47**
-* Demo 
+* Demo - to 25.11. 
 * Dokumentointi 
 
 **Projektin päätös - vko 48**
