@@ -80,3 +80,19 @@ export const authenticateUser = (req: Request, res: Response) => {
     });
 
 };
+
+export const deleteUser = (req: Request, res: Response) => {
+    
+    const user = User.findOne({_id: req.params.id}, (err: any) => {
+        if (err){
+            res.status(500).end();
+        }else{
+            User.deleteOne({id: req.params.id});
+            if (err){
+                res.status(500).end();
+            } else{
+                res.status(200).end();
+            }
+        }
+    });
+}
