@@ -2,25 +2,29 @@ import React, { useState } from 'react';
 import Customer from '../models/customer';
 
 
-const Editcustomer = (costumerId:String) => {
-
+const Editcustomer = () => {
+    const querystring = window.location.search;
+    const urlParams = new URLSearchParams(querystring);
+    const id = urlParams.get('id');
     const [customer, setCustomer] = React.useState<Customer>();
-    const getCostumer = customer
+
     const getData = async () => {
-        const response = await fetch('http://localhost:1337/customer:' + costumerId, {
+        console.log(id)
+        const response = await fetch('http://localhost:1337/customer/:' + id, {
             method:'GET',
             headers:{'Content-type':'application/json',
-                    'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNTk0MTgxMH0.8uZ7uTubty3qblBZD3Tcdm7HqW1GlZMzJQ8icjaSMDU'}
-        });
-        const data = await response.json();
+                    'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjAxMzE0Nn0.J7WXTauzQrft0-EOb7jxvBCc4NQzlIpTR8P6HvMXzdE'}
+                     });
+        const data = await response.json()
+        console.log(data)
         setCustomer(data)
     }
+
     React.useEffect(()=> {
         getData();
     }, []);
 
     const [input, setInput] = useState<Customer>({
-        _id: "",
         YTunnus: "",
         asiakkaanNimi: "",
         Postitusosoite: "",
@@ -36,11 +40,11 @@ const Editcustomer = (costumerId:String) => {
     }
 
     const handleClick = (): void =>{
-        fetch('http://localhost:1337/customer', {
+        fetch('http://localhost:1337/customer/:' + id, {
             method: 'PATCH',
-            headers: { 'Content-type': 'application/json'},
+            headers: { 'Content-type': 'application/json',
+                        'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjAxMzE0Nn0.J7WXTauzQrft0-EOb7jxvBCc4NQzlIpTR8P6HvMXzdE'},
             body: JSON.stringify({
-                _id: costumerId,
                 YTunnus: input.YTunnus,
                 asiakkaanNimi: input.asiakkaanNimi,
                 Postitusosoite: input.Postitusosoite,
@@ -68,7 +72,7 @@ const Editcustomer = (costumerId:String) => {
             <h3>Muokkaa asiakasta</h3>
                 <input 
                     type="text"
-                    placeholder={getCostumer?.YTunnus}
+                    placeholder={"Y-Tunnus"}
                     className="AddCustomer-input"
                     onChange={handleChange}
                     name="YTunnus"
