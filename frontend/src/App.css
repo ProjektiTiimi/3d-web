@@ -1,40 +1,8 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 5vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+* {
+  box-sizing:border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 .GetCustomers {
@@ -67,13 +35,20 @@
 }
 
 .AddCustomer-btn{
-  padding: 0.5rem;
+  padding: 8px 20px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  color: #fff;
   cursor: pointer;
-  height: 60px;
-  background-color: #0b5468;
-  font-weight: 700;
-  color: white;
-  border: none
+  background-color: #000;
+}
+
+.AddCustomer-btn:hover{
+  padding: 6px 18px;
+  transition: all 0.3s ease-out;
+  background-color: #156383;
 }
 
 .NavigationBar{
@@ -93,4 +68,10 @@
   text-align: center;
   padding: 16px;
   border-radius: 24px;
+}
+
+.homepage{
+  text-align: center;
+  font-weight: 700;
+  padding-top: 100px;
 }

@@ -13,12 +13,14 @@ import Customerlist from './components/Customerlist';
 import Invoice from './components/Invoice';
 import Addcustomer from './components/Addcustomer';
 import Editcustomer from './components/Editcustomer';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Navigation/>
+        <Navbar />
+        {/*<Navigation/>*/}
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/addcustomer" component={Addcustomer} />
