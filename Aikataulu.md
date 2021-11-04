@@ -26,3 +26,27 @@
 **Projektin päätös - vko 48**
 * Katselmointi 30.11. 
 * Palaute
+
+## Extrat
+
+Projektissa matkan varrella keksityt valinnaiset toiminnallisuudet
+* Kuva
+ * Kuvan lisääminen laskuttajan tietoihin.
+ * Kuva näkyviin käyttöliittymään.
+ * Kuva mukaan laskuun.
+* Lisäkäyttäjien luominen
+ * Toiminnallisuus uuden käyttäjän luomiseksi.
+ * Käyttäjäkohtainen asiakastietokanta
+* Admin käyttäjä
+  * Käyttäjien selaus, muokkaus, lisäys, poisto
+  * Käyttäjien asiakastietojen selaus, muokkaus, lisäys, poisto
+  * Käyttäjien laskujen selaaminen
+  * Käyttäjän laskujen uudelleen lähetys.
+* Laskut
+  * Käyttäjän omien laskujen selaaminen
+  * Käyttäjän omien laskujen uudelleen lähetys.
+  * Huom! Nämä käyttäen puhelimen tai tietokoneen lähetystoimintoja. Ei tarvitse pystyä lähettämään suoraan palvelimelta.
+* Kehitysputken automatisointi
+  * Jenkins, jossa koko putki voidaan testata.
+  * Testitulokset jäävät näkyviin Jenkins-raportteihin.
+ 
