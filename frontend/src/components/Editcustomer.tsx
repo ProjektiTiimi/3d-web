@@ -53,10 +53,12 @@ const Editcustomer = () => {
         })
         .then(function(data){
             console.log("Request succeeded with response ", data)
-            document.getElementById("savedText")!.hidden = false;
+            document.getElementById("savedText")!.hidden = false
         })
         .catch(function(error){
             console.log("Request failed ", error)
+            document.getElementById("savedText")!.textContent = "Virhe"
+            document.getElementById("savedText")!.hidden = false
         })
     }
 
