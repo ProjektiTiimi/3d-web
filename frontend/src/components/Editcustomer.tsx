@@ -17,8 +17,7 @@ const Editcustomer = () => {
                      });
         const data = await response.json()
         console.log(data)
-        setCustomer(data)
-        console.log(customer)
+        setInput(data)
     }
 
     React.useEffect(()=> {
@@ -58,13 +57,6 @@ const Editcustomer = () => {
         })
         .catch(function(error){
             console.log("Request failed ", error)
-        })
-        setInput({
-            YTunnus: "",
-            asiakkaanNimi: "",
-            Postitusosoite: "",
-            Postinumero: "",
-            Toimipaikka: ""
         })
     }
 
