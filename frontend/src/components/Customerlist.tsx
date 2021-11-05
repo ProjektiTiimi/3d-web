@@ -8,7 +8,11 @@ function Customerlist(){
     const [customers, setCustomers] = React.useState<Customer[]>([]);
     const [counter, setCounter]:any = React.useState(0);
     const getData = async () => {
-        const response = await fetch('http://localhost:1337/customers');
+        const response = await fetch('http://localhost:1337/customers', {
+            method:'GET',
+            headers:{'Content-type':'application/json',
+                    'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjAyOTM1MX0._9mpMIpYLJD_FwxjbfpjufnBM1MaV59FArj87tJGRl4'}
+        });
         const data = await response.json();
         setTotal(data.length);
         setCustomers(data)
@@ -44,8 +48,7 @@ function Customerlist(){
             <h3>{counter+1}-{counter+10}/{total}</h3>
             <button className="prevButton" onClick={ClickPrev}> edelliset</button>
             {showCustomers.map(Customer =>(
-                <CustomerDiv key={Customer._id}{...Customer}
-                />
+                <CustomerDiv key={Customer._id}{...Customer}/>
             ))}
             <button className="nextButton" onClick={ClickNext}>seuraavat</button>
             <button className="updateButton" onClick={getData}>Päivitä</button>
