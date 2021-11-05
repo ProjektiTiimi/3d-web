@@ -6,7 +6,6 @@ const Editcustomer = () => {
     const querystring = window.location.search;
     const urlParams = new URLSearchParams(querystring);
     const id = urlParams.get('id');
-    const [customer, setCustomer] = React.useState<Customer>();
 
     const getData = async () => {
         console.log(id)
@@ -53,7 +52,8 @@ const Editcustomer = () => {
             })
         })
         .then(function(data){
-            console.log("Request succeeded with response ", data)            
+            console.log("Request succeeded with response ", data)
+            document.getElementById("savedText")!.hidden = false;
         })
         .catch(function(error){
             console.log("Request failed ", error)
@@ -108,6 +108,7 @@ const Editcustomer = () => {
                 onClick={handleClick}>
                 Tallenna
             </button>
+            <h4 id="savedText" hidden>Tallennettu</h4>
         </div>
     )
 }
