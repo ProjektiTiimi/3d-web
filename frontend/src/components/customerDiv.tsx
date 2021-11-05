@@ -14,7 +14,7 @@ const CustomerDiv = (customer:Customer) => {
     }
     return(
         <div className="customerDiv" >
-            <h3>{customer.asiakkaanNimi}<Link to={`/customer:${customer._id}`}>   <button>Muokkaa</button></Link> 
+            <h3>{customer.asiakkaanNimi}<Link to={`/customer:${customer._id}`}>   <button onClick={klik}>Muokkaa</button></Link> 
             <button onClick={klik}>
             Valitse</button></h3>
         </div>

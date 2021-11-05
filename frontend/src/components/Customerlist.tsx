@@ -2,11 +2,9 @@ import * as React from 'react';
 import { useContext } from "react";
 import Customer from '../models/customer';
 import CustomerDiv from './customerDiv';
-import TestiContext from "./testiContext";
 
 
 function Customerlist(){
-    const { id, setID } = useContext(TestiContext);
     const [total, setTotal] = React.useState(0);
     const [customers, setCustomers] = React.useState<Customer[]>([]);
     const [counter, setCounter]:any = React.useState(0);
@@ -41,7 +39,6 @@ function Customerlist(){
         }
     }
     const showYTunnus =() => {
-        setID("moi")
     }
 
     const showCustomers = customers.slice(counter, counter+10)
