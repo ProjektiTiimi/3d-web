@@ -8,9 +8,10 @@ import TestiContext from "./testiContext";
 
 const CustomerDiv = (customer:Customer) => {
     const { id, setID } = useContext(TestiContext);
+    const {asiakkaanNimi, setAsiakkaanNimi} = useContext(TestiContext);
     const klik = () =>{
-        console.log("asiakkaan Y-tunnus: " + customer.YTunnus)
         setID(customer._id!)
+        setAsiakkaanNimi(customer.asiakkaanNimi);
     }
     return(
         <div className="customerDiv" >

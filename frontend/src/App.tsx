@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import './App.css';
 //Components
+import Customer from './models/customer';
 import Homepage from './components/Homepage';
 import Customerlist from './components/Customerlist';
 import Invoice from './components/Invoice';
@@ -16,8 +17,15 @@ import Navbar from './components/Navbar/Navbar';
 import TestiContext from './components/testiContext';
 
 function App() {
-  const [id, setID] = useState("defaultID");
-  const value = {id, setID};
+  const [defaultCustomer, setDefaulCustomer] = useState({
+    _id : "",
+    YTunnus : "default",
+    asiakkaanNimi: "default",
+    Postitusosoite: "default",
+    Postinumero: "default",
+    Toimipaikka: "default"
+  },);
+  const value = {defaultCustomer, setDefaulCustomer};
   return(
     <TestiContext.Provider value={value}>
       <Router>
@@ -31,7 +39,6 @@ function App() {
             <Route path="/customers" component={Customerlist} />
             <Route path="/invoice" component={Invoice} />
           </Switch>
-          <h2>{id}</h2>    
       </div>
       </Router>
     </TestiContext.Provider>
