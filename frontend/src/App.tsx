@@ -14,7 +14,7 @@ import Invoice from './components/Invoice';
 import Addcustomer from './components/Addcustomer';
 import Editcustomer from './components/Editcustomer';
 import Navbar from './components/Navbar/Navbar';
-import TestiContext from './components/testiContext';
+import TestiContext from './components/customerContext';
 
 function App() {
   const [defaultCustomer, setDefaultCustomer] = useState({

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useContext } from "react";
 import Customer from '../models/customer';
 import { Link } from 'react-router-dom';
-import TestiContext from "./testiContext";
+import TestiContext from "./customerContext";
 
 
 

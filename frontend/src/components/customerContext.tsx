@@ -6,7 +6,7 @@ type contextType = {
     setDefaultCustomer: (defaultCustomer : Customer) => void
 }
 
-const TestiContext = React.createContext<contextType>({
+const customerContext = React.createContext<contextType>({
     defaultCustomer: {
         _id : "",
         YTunnus : "default",
@@ -18,4 +18,4 @@ const TestiContext = React.createContext<contextType>({
     setDefaultCustomer: (defaultCustomer : Customer) => {}
 });
 
-export default TestiContext
+export default customerContext
