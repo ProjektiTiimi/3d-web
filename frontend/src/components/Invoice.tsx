@@ -4,8 +4,7 @@ import Customerlist from "./Customerlist";
 function Invoice() {
     return(
         <div className="App">
-            <Customerlist />
-            
+            <Customerlist />         
         </div>
     )
 }
