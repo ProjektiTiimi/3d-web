@@ -6,9 +6,6 @@ export interface ICustomer extends mongoose.Document{
     Postitusosoite: String;
     Postinumero: String; 
     Toimipaikka: String;
-    Puhelin: String;
-    Kotisivu: String;
-    Sahkoposti: String;
 }
 
 export const CustomerSchema = new mongoose.Schema({
@@ -17,9 +14,6 @@ export const CustomerSchema = new mongoose.Schema({
     Postitusosoite: { type: String, required: true },
     Postinumero: { type: String, required: true },
     Toimipaikka: {  type: String, required: true },
-    Puhelin: {  type: String },
-    Kotisivu: {  type: String },
-    Sahkoposti: {  type: String }
 })
 
 const Customer = mongoose.model<ICustomer>("Customer", CustomerSchema);
