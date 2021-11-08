@@ -1,7 +1,12 @@
 import * as React from 'react';
 import Customer from '../models/customer';
 
-const TestiContext = React.createContext({
+type contextType = {
+    defaultCustomer: Customer,
+    setDefaultCustomer: (defaultCustomer : Customer) => void
+}
+
+const TestiContext = React.createContext<contextType>({
     defaultCustomer: {
         _id : "",
         YTunnus : "default",

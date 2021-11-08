@@ -18,7 +18,6 @@ import TestiContext from './components/testiContext';
 
 function App() {
   const [defaultCustomer, setDefaultCustomer] = useState({
-    _id : "",
     YTunnus : "default",
     asiakkaanNimi: "default",
     Postitusosoite: "default",
@@ -41,6 +40,7 @@ function App() {
           </Switch>
       </div>
       </Router>
+      <h3>{defaultCustomer.asiakkaanNimi}</h3>
     </TestiContext.Provider>
   );
 }
