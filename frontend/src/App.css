@@ -75,3 +75,50 @@
   font-weight: 700;
   padding-top: 100px;
 }
+
+.customerList{
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  margin: 5rem auto
+}
+
+.filter{
+  font-size: large;
+}
+
+.prevButton, .nextButton, .updateButton{
+  padding: 8px 20px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #000;
+  display: inline-block;
+}
+
+.customerDiv{
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  font-size: large;
+  padding: 4px 10px;
+}
+
+.editButton, .selectButton{
+  display: inline-block;
+  color: #fff;
+  background-color: #000;
+  margin: 5px;
+  font-size:large;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.customerDiv:focus-within {
+  background-color: #156383;
+  color: #fff
+}

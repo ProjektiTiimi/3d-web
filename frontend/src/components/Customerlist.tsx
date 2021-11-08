@@ -8,6 +8,7 @@ function Customerlist(){
     const [total, setTotal] = React.useState(0);
     const [customers, setCustomers] = React.useState<Customer[]>([]);
     const [counter, setCounter]:any = React.useState(0);
+    const [input, setinput] = React.useState("");
     const getData = async () => {
         const response = await fetch('http://localhost:1337/customers', {
             method: 'GET',
@@ -38,20 +39,23 @@ function Customerlist(){
             setCounter(counter+10)
         }
     }
-    const showYTunnus =() => {
-    }
 
-    const showCustomers = customers.slice(counter, counter+10)
+    const showCustomers = customers
+    .filter(Customer => {return Customer.asiakkaanNimi.toLowerCase().includes(input.toLowerCase())})
+    .slice(counter, counter+10)
+
+
     return(
         <div className="customerList">
+            <h3>Suodata</h3>
+            <input type="text" className ="filter" value={input} onInput={(e: React.ChangeEvent<HTMLInputElement>) => setinput(e.target.value)}/>
             <h3>{counter+1}-{counter+10}/{total}</h3>
             <button className="prevButton" onClick={ClickPrev}> edelliset</button>
-            {showCustomers.map(Customer =>(
+            {showCustomers
+                .map(Customer =>(
                 <CustomerDiv key={Customer._id}{...Customer}/>
             ))}
             <button className="nextButton" onClick={ClickNext}>seuraavat</button>
-            <button className="updateButton" onClick={getData}>Päivitä</button>
-            <button className="ytunnusButton" onClick={showYTunnus}>YTunnus</button>
         </div>
     )
 }

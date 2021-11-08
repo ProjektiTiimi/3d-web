@@ -10,12 +10,17 @@ const CustomerDiv = (customer:Customer) => {
     const { defaultCustomer, setDefaultCustomer } = useContext(TestiContext);
     const klik = () =>{
         setDefaultCustomer(customer);
+        console.log(defaultCustomer._id)
     }
     return(
         <div className="customerDiv" >
-            <h3>{customer.asiakkaanNimi}<Link to={`/customer:${customer._id}`}>   <button onClick={klik}>Muokkaa</button></Link> 
-            <button onClick={klik}>
-            Valitse</button></h3>
+            {customer.asiakkaanNimi}
+            <div>
+            <Link to={`/editcustomer/?id=${customer._id}`}><button className="editButton" onClick={klik}>
+                <i className="fas fa-edit"></i>
+                </button></Link> 
+            <button className="selectButton" onClick={klik}>Valitse</button>
+            </div>
         </div>
 )}
 
