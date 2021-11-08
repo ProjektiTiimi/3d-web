@@ -17,7 +17,7 @@ import Navbar from './components/Navbar/Navbar';
 import TestiContext from './components/testiContext';
 
 function App() {
-  const [defaultCustomer, setDefaulCustomer] = useState({
+  const [defaultCustomer, setDefaultCustomer] = useState({
     _id : "",
     YTunnus : "default",
     asiakkaanNimi: "default",
@@ -25,7 +25,7 @@ function App() {
     Postinumero: "default",
     Toimipaikka: "default"
   },);
-  const value = {defaultCustomer, setDefaulCustomer};
+  const value = {defaultCustomer, setDefaultCustomer};
   return(
     <TestiContext.Provider value={value}>
       <Router>
