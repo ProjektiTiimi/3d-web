@@ -16,8 +16,10 @@ const CustomerDiv = (customer:Customer) => {
         <div className="customerDiv" >
             {customer.asiakkaanNimi}
             <div>
-            <Link to={`/editcustomer/?id=${customer._id}`}><button onClick={klik}>Muokkaa</button></Link> 
-            <button onClick={klik}>Valitse</button>
+            <Link to={`/editcustomer/?id=${customer._id}`}><button className="editButton" onClick={klik}>
+                <i className="fas fa-edit"></i>
+                </button></Link> 
+            <button className="selectButton" onClick={klik}>Valitse</button>
             </div>
         </div>
 )}
