@@ -39,9 +39,6 @@ function Customerlist(){
             setCounter(counter+10)
         }
     }
-    const showYTunnus =() => {
-        console.log(input)
-    }
 
     const showCustomers = customers
     .filter(Customer => {return Customer.asiakkaanNimi.toLowerCase().includes(input.toLowerCase())})
@@ -50,6 +47,7 @@ function Customerlist(){
 
     return(
         <div className="customerList">
+            <h3>Suodata</h3>
             <input type="text" className ="filter" value={input} onInput={(e: React.ChangeEvent<HTMLInputElement>) => setinput(e.target.value)}/>
             <h3>{counter+1}-{counter+10}/{total}</h3>
             <button className="prevButton" onClick={ClickPrev}> edelliset</button>
@@ -58,8 +56,6 @@ function Customerlist(){
                 <CustomerDiv key={Customer._id}{...Customer}/>
             ))}
             <button className="nextButton" onClick={ClickNext}>seuraavat</button>
-            <button className="updateButton" onClick={getData}>Päivitä</button>
-            <button className="ytunnusButton" onClick={showYTunnus}>YTunnus</button>
         </div>
     )
 }

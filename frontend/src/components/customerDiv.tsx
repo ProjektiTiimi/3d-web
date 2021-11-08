@@ -14,9 +14,11 @@ const CustomerDiv = (customer:Customer) => {
     }
     return(
         <div className="customerDiv" >
-            <h3>{customer.asiakkaanNimi}<Link to={`/editcustomer/?id=${customer._id}`}>   <button onClick={klik}>Muokkaa</button></Link> 
-            <button onClick={klik}>
-            Valitse</button></h3>
+            {customer.asiakkaanNimi}
+            <div>
+            <Link to={`/editcustomer/?id=${customer._id}`}><button onClick={klik}>Muokkaa</button></Link> 
+            <button onClick={klik}>Valitse</button>
+            </div>
         </div>
 )}
 
