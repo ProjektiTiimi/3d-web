@@ -47,8 +47,7 @@ function Customerlist(){
             <h3>{counter+1}-{counter+10}/{total}</h3>
             <button className="prevButton" onClick={ClickPrev}> edelliset</button>
             {showCustomers.map(Customer =>(
-                <CustomerDiv key={Customer._id}{...Customer}
-                />
+                <CustomerDiv key={Customer._id}{...Customer}/>
             ))}
             <button className="nextButton" onClick={ClickNext}>seuraavat</button>
             <button className="updateButton" onClick={getData}>Päivitä</button>
