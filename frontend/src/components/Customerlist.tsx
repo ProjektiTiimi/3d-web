@@ -41,7 +41,7 @@ function Customerlist() {
         if(counter < total && counter+20 > total && total > 10){
             setCounter(total-10)
         }
-        else if(counter+20 < total){
+        else if(counter+20 <= total){
             setCounter(counter+10)
         }
     }
