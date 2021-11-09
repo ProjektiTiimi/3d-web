@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { BehaviorSubject } from 'rxjs';
 
-const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
-
-class App extends Component {
-    constructor(props) {
+const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+type userState = {
+  username: string,
+  password: string
+}
+export default class UserLogin extends Component<any, any> {
+    constructor(props: string) {
       super(props);
       this.state = {
         username : '',
@@ -49,17 +52,17 @@ class App extends Component {
       return currentUserSubject.value;
     }
   
-    updatePassword(event) {
+    updatePassword(event: any) {
       this.setState({password : event.target.value});
   
     }
   
-    updateUsername(event) {
+    updateUsername(event: any) {
       this.setState({ username : event.target.value });
   
     }
   
-    updateToken(event) {
+    updateToken(event: any) {
       this.setState({token : event.target.value});
     }
     
@@ -77,5 +80,3 @@ class App extends Component {
       );
     }
   }
-  
-  export default App;
