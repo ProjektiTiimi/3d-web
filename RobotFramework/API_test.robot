@@ -2,7 +2,7 @@
 #source venv/bin/activate  On windows: venv/Scripts/activate
 #pip install --upgrade RESTinstance
 ***Settings***
-Library  REST    http://localhost:8040
+Library  REST    http://localhost:1337
 
 *** Variables ***
 ${register-json}     {"username": "RobottiTesti", "password": "RobottiPassu" }

@@ -1,24 +1,32 @@
 import * as React from 'react';
+import { useContext, Component } from "react";
 import Customer from '../models/customer';
 import CustomerDiv from './customerDiv';
 
 
-function Customerlist(){
+function Customerlist() {
     const [total, setTotal] = React.useState(0);
-    const [customers, setCustomers] = React.useState<Customer[]>([]);
     const [counter, setCounter]:any = React.useState(0);
+    const [customers, setCustomers] = React.useState<Customer[]>([]);
+    const [input, setinput] = React.useState("");
+    const filteredList = customers.filter(Customer => {return Customer.asiakkaanNimi.toLowerCase().includes(input.toLowerCase())});
     const getData = async () => {
-        const response = await fetch('http://localhost:1337/customers');
+        const response = await fetch('http://localhost:1337/customers', {
+            method: 'GET',
+            headers: { 'Content-type': 'application/json',
+                        'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlJvYm90dGlUZXN0aSIsImlhdCI6MTYzNjAxOTIyMH0.ZH-SV50DEzOV-8Yk8HzapjwsgMHyezFayUiucIM8x30'}
+        });
         const data = await response.json();
         setTotal(data.length);
         setCustomers(data)
-        console.log(customers)
-        console.log("counter: " + counter)
-        console.log("totalcustomers: " +total)
     }
     React.useEffect(()=> {
         getData();
     }, []);
+
+    React.useEffect(()=> {
+        setTotal(filteredList.length)
+    }, [input]);
 
     const ClickPrev = () =>{
         if (counter>0 && counter < 10){
@@ -29,28 +37,37 @@ function Customerlist(){
         }
     }
     const ClickNext = () =>{
-        if(counter < total && counter+20 > total){
+        console.log(total)
+        if(counter < total && counter+20 > total && total > 10){
             setCounter(total-10)
         }
-        else if(counter+20 < total){
+        else if(counter+20 <= total){
             setCounter(counter+10)
         }
     }
 
-    const showCustomers = customers.slice(counter, counter+10)
-    console.log("showCustomers: "+showCustomers)
+    
+    const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setinput(e.target.value);
+        setCounter(0);
+    }
+
+    const showCustomers = filteredList.slice(counter, counter+10);
+
     return(
         <div className="customerList">
-            <h3>{counter+1}-{counter+10}/{total}</h3>
+            <h3>Suodata</h3>
+            <input type="text" className ="filter" value={input} onInput={inputChange}/>
+            <h3>{(counter == 0) ? 0 : counter}-{(total > 10) ? counter+10 : total}/{total}</h3>
             <button className="prevButton" onClick={ClickPrev}> edelliset</button>
-            {showCustomers.map(Customer =>(
-                <CustomerDiv key={Customer._id}{...Customer}
-                />
+            {showCustomers
+                .map(Customer =>(
+                <CustomerDiv key={Customer._id}{...Customer}/>
             ))}
             <button className="nextButton" onClick={ClickNext}>seuraavat</button>
-            <button className="updateButton" onClick={getData}>Päivitä</button>
         </div>
     )
 }
+
 
 export default Customerlist

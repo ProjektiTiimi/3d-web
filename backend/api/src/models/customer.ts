@@ -9,11 +9,11 @@ export interface ICustomer extends mongoose.Document{
 }
 
 export const CustomerSchema = new mongoose.Schema({
-    YTunnus: { type: String, required: true},
-    asiakkaanNimi: { type: String, required: true},
-    Postitusosoite: { type: String },
-    Postinumero: { type: String },
-    Toimipaikka: {  type: String }
+    YTunnus: { type: String },
+    asiakkaanNimi: { type: String, required: true },
+    Postitusosoite: { type: String, required: true },
+    Postinumero: { type: String, required: true },
+    Toimipaikka: {  type: String, required: true },
 })
 
 const Customer = mongoose.model<ICustomer>("Customer", CustomerSchema);
