@@ -12,7 +12,7 @@ const Editcustomer = () => {
         const response = await fetch('http://localhost:1337/customer/' + id, {
             method:'GET',
             headers:{'Content-type':'application/json',
-                    'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjAyOTM1MX0._9mpMIpYLJD_FwxjbfpjufnBM1MaV59FArj87tJGRl4'}
+                    'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjQ0NzMwNn0.jI7gmVQ20WsbU3QvJijqhTfkjn8EtZyilUUFYs9jL9Q'}
                      });
         const data = await response.json()
         console.log(data)
