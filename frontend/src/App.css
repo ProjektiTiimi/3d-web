@@ -94,6 +94,13 @@
   margin: 5rem auto
 }
 
+.customerList{
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  margin: 5rem auto
+}
+
 .Invoice-input{
   padding: 0.5rem;
   font-size: 1rem;
@@ -135,7 +142,12 @@
   font-size: 1.4rem;
 }
 
-.Invoice-btn{
+
+.filter{
+  font-size: large;
+}
+
+.prevButton, .nextButton, .updateButton{
   padding: 8px 20px;
   border-radius: 4px;
   outline: none;
@@ -150,4 +162,29 @@
   padding: 6px 18px;
   transition: all 0.3s ease-out;
   background-color: #156383;
+  display: inline-block;
+}
+
+.customerDiv{
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  font-size: large;
+  padding: 4px 10px;
+}
+
+.editButton, .selectButton{
+  display: inline-block;
+  color: #fff;
+  background-color: #000;
+  margin: 5px;
+  font-size:large;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.customerDiv:focus-within {
+  background-color: #156383;
+  color: #fff
 }
