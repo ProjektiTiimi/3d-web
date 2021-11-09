@@ -43,12 +43,23 @@
   color: #fff;
   cursor: pointer;
   background-color: #000;
+  display: inline-block;
 }
 
 .AddCustomer-btn:hover{
   padding: 6px 18px;
   transition: all 0.3s ease-out;
   background-color: #156383;
+}
+
+.Edit-btn{
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-style: none;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 1.4rem;
 }
 
 .NavigationBar{
@@ -76,12 +87,61 @@
   padding-top: 100px;
 }
 
+.Invoice{
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  margin: 5rem auto
+}
+
 .customerList{
   display: flex;
   flex-direction: column;
   width: 30rem;
   margin: 5rem auto
 }
+
+.Invoice-input{
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin: 0.3rem 0rem
+}
+
+.Invoice-date{
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin: 0.3rem 0rem
+}
+
+.Invoice-date .date-tooltip{
+  visibility: hidden;
+  width: 120px;
+  background-color: #fff;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.Invoice-date:hover .date-tooltip{
+  visibility: visible;
+}
+
+.Invoice-checkbox{
+  padding: 1.5rem;
+  padding-left: 1.5rem;
+  width: 20px;
+  height: 20px;
+  border-style: none;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+
 
 .filter{
   font-size: large;
@@ -96,6 +156,12 @@
   color: #fff;
   cursor: pointer;
   background-color: #000;
+}
+
+.Invoice-btn:hover{
+  padding: 6px 18px;
+  transition: all 0.3s ease-out;
+  background-color: #156383;
   display: inline-block;
 }
 
