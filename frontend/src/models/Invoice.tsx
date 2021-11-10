@@ -8,8 +8,8 @@ interface Invoice{
     Maksuehto?: string;
     Viivastyskorko?: string;
     Viitenumero: string;
-    Tarkistenumero: boolean;
     Viesti: string;
+    Tarkistenumero: string;
 }
 
 export default Invoice;
