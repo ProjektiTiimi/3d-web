@@ -1,0 +1,89 @@
+
+.invoicePDF{
+    display:block;
+    background-color: beige;
+    margin-left: auto;
+    margin-right: auto;
+    width: 42rem;
+    padding: 2%;
+}
+
+.invoicePDF-header{
+    width: 100%;
+    height: 10rem;
+    background-color: aqua;
+}
+
+.invoicePDF-rows{
+    width: 100%;
+    height: 15rem;
+    background-color: aquamarine;
+}
+
+.invoicePDF-invoice{
+    width: 100%;
+    height: 34.4rem;
+}
+
+.invoicePDF-biller{
+    height: 10rem;
+    background-color: rgb(127, 224, 224);
+}
+
+.invoicePDF-customer{
+    height: 20rem;
+    background-color: bisque; 
+}
+
+.customer-table{
+    height: 100%;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.customer-table tr:first-child{
+    height: 15%;
+    border-bottom: 2px solid black;
+}
+
+.customer-table tr:nth-child(2){
+    height: 15%;
+}
+
+.customer-table tr:nth-child(3){
+    height: 40%;
+    border-bottom: 2px solid black;
+}
+
+.customer-table tr:nth-child(4){
+    height: 15%;
+    border-bottom: 2px solid black;
+}
+
+.customer-table tr:nth-child(5){
+    height: 15%;
+    border-bottom: 2px solid black;
+}
+
+.customer-table tr td:first-child{
+    width: 10%;
+    border-bottom: 2px solid black;
+    border-right: 1px solid black;
+    font-size: 11px;
+    text-align: center;
+    padding: 2px;
+    vertical-align: top;
+}
+
+.customer-table tr td:nth-child(2){
+    width: 40%;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    vertical-align: top;
+    padding: 2px;
+}
+
+.customer-table tr td:nth-child(3){
+    width: 50%;
+    padding: 2px;
+}

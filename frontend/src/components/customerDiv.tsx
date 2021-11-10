@@ -2,12 +2,12 @@ import * as React from 'react';
 import { useContext } from "react";
 import Customer from '../models/customer';
 import { Link } from 'react-router-dom';
-import TestiContext from "./customerContext";
+import CustomerContext from "./customerContext";
 
 
 
 const CustomerDiv = (customer:Customer) => {
-    const { defaultCustomer, setDefaultCustomer } = useContext(TestiContext);
+    const { defaultCustomer, setDefaultCustomer } = useContext(CustomerContext);
     const klik = () =>{
         setDefaultCustomer(customer);
         console.log(defaultCustomer._id)

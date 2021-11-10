@@ -19,11 +19,11 @@ import invoiceContext from './components/invoiceContext';
 
 function App() {
   const [defaultCustomer, setDefaultCustomer] = useState({
-    YTunnus : "default",
-    asiakkaanNimi: "default",
-    Postitusosoite: "default",
-    Postinumero: "default",
-    Toimipaikka: "default"
+    YTunnus : "",
+    asiakkaanNimi: "",
+    Postitusosoite: "",
+    Postinumero: "",
+    Toimipaikka: ""
   },);
 
   const [defaultInvoice, setDefaultInvoice] = useState({    
