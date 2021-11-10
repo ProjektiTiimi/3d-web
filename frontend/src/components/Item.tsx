@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import ItemModel from "../models/ItemModel";
 
 
-const Item = () => {
+const Item = (givenId:number) => {
     const [input, setInput] = useState<ItemModel>({
-        Selite: "",
-        kpl: "",
-        hinta: "",
+        id: givenId,
+        selite: "",
+        kpl: 0,
+        hinta: 0,
         alv: "",
     })
 
@@ -25,7 +26,7 @@ const Item = () => {
                 className="Invoice-input"
                 onChange={handleChange}
                 name="Selite"
-                value={input.Selite}
+                value={input.selite}
             />
             <input 
                 type="number"
@@ -38,7 +39,7 @@ const Item = () => {
             <input 
                 type="number"
                 placeholder="Hinta"
-                className="AddCustomer-input"
+                className="Invoice-input"
                 onChange={handleChange}
                 name="Hinta"
                 value={input.hinta}

@@ -3,18 +3,32 @@ import Item from "./Item";
 import ItemModel from "../models/ItemModel";
 
 function LineInfo() {
-    const item = React.useState<ItemModel>();
-    const itemList = (items:ItemModel[]) => (
-        <ul>
-            {items.map(Item)}
-        </ul>
-    )
+    const items = React.useState<ItemModel[]>([]);
+    let itemCounter = 0;
+    const ItemList = [Item(itemCounter)];
+    ItemList.push(Item(itemCounter));
+
+    const AddItem = () => {
+        ItemList.push(Item(itemCounter));
+        itemCounter++;
+    }
+
+    const RemoveItem = () => {
+        delete ItemList[itemCounter];
+        itemCounter--;
+    }
 
     return(
         <div className="Invoice">
             <h3>Rivitiedot</h3>
-            <Item />
-            <button>Lisää</button><button>Poista</button>
+
+            {ItemList.map(item => (
+                item
+            ))}
+
+            <button className="" onClick={AddItem}>Lisää</button>
+            <button className="" onClick={RemoveItem}>Poista</button>
+
             <input
                 id="VerollinenHinta" 
                 type="checkbox"
