@@ -25,3 +25,4 @@ const CustomerDiv = (customer:Customer) => {
 )}
 
 export default CustomerDiv
+ 
