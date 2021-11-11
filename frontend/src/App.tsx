@@ -37,10 +37,9 @@ function App() {
     },);
 
   const value = {defaultCustomer, setDefaultCustomer};
-  const invoiceInfo = {defaultInvoice, setDefaultInvoice}
+  const invoiceInfo = {defaultInvoice, setDefaultInvoice};
   return(
     <TestiContext.Provider value={value}>
-    
       <Router>
         <div className="App">
           <Navbar />
@@ -56,7 +55,6 @@ function App() {
           </Switch>
       </div>
       </Router>
-      <h3>{defaultCustomer.asiakkaanNimi}</h3>
     
     </TestiContext.Provider>
   );
