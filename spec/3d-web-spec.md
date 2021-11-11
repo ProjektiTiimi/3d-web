@@ -44,6 +44,7 @@ tai
 - mahdollisuus lähettää se edelleen suoraan puhelimelta käyttäen puhelimen omia toimintoja.
 
 5. Laskun tietojen tallennus
+
 Laskun yksilöivät ja muuttuvat tiedot tallennetaan kantaan json-formaatissa
 - aikaleima
 - laskunnumero
