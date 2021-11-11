@@ -6,7 +6,7 @@ function LineInfo() {
     const items = React.useState<ItemModel[]>([]);
     let itemCounter = 0;
     const ItemList = [Item(itemCounter)];
-    ItemList.push(Item(itemCounter));
+    //ItemList.push(Item(itemCounter));
 
     const AddItem = () => {
         ItemList.push(Item(itemCounter));
