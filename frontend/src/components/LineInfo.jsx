@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function LineInfoApp() {
+function LineInfo() {
     const [inputList, setInputList] = useState([{
         selite: "",
         kpl: 0,
@@ -101,4 +101,4 @@ function LineInfoApp() {
     )
 }
 
-export default LineInfoApp
+export default LineInfo
