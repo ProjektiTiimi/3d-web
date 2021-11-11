@@ -40,8 +40,15 @@ tai
 
 4. Näytetään pdf-lasku
 - näytetään pdf-lasku käyttöliittymällä, kun se on luotu
-- mahdollsuus lähettää se edelleen suoraan puhelimelta käyttäen puhelimen omia toimintoja.
+- Annetaan mahdollisuus tallentaa pdf laitteelle
+- mahdollisuus lähettää se edelleen suoraan puhelimelta käyttäen puhelimen omia toimintoja.
 
+5. Laskun tietojen tallennus
+Laskun yksilöivät ja muuttuvat tiedot tallennetaan kantaan json-formaatissa
+- aikaleima
+- laskunnumero
+- viitenumero
+- asiakas
 
 ## Hallinnointi
 
@@ -58,7 +65,8 @@ API, jolla hallinnoidaan asiakastietoja
 - Sähköposti
 4. Laskun perustiedot ks. https://laskut.online
 - tilinumero
-- laskunnumero (juokseva numero)
+- laskunnumero 
+  - juokseva numero esim. YYMMDDhhmm. Tällä yksilöivällä numerolla lasku löytyy myöhemmin.
 - maksuehto 
    - päivien lkm, joka lisätään luontipäivään. Käytetään siis eräpäivän luontiin.
 5. Viitteen luonti
