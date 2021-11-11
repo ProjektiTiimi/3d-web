@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Invoice from '../models/Invoice';
+import invoiceContext from './invoiceContext'
 
 
-const Invoiceinfo = () => {
+const Invoiceinfo = () => {    
+
+    const [checked, setChecked] = useState<boolean>(true);
+    const toggleChecked = () => setChecked(value => !value);
+
     const [input, setInput] = useState<Invoice>({
         Tilinumero: "",
         LaskunNumero: "",
@@ -11,17 +16,32 @@ const Invoiceinfo = () => {
         Maksuehto: "",
         Viivastyskorko: "",
         Viitenumero:"",
-        Tarkistenumero: true,
         Viesti: "",
+        Tarkistenumero: ""
     })
+    
+    let checkNum = "2";
+    if (checked == true) {
+        input.Tarkistenumero = checkNum;
+    }
+    else if (checked == false) {
+        input.Tarkistenumero = "";
+    }
+
+    const { defaultInvoice, setDefaultInvoice } = useContext(invoiceContext);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInput({
             ...input,
             [e.target.name]: e.target.value
         })
-        console.log(input.Tarkistenumero)
     }
+
+    const addToInvoice = () => {
+        setDefaultInvoice(input);
+        console.log(JSON.stringify(input))        
+    }
+
 
     // const handleClick = (): void =>{
     //     fetch('http://localhost:1337/customer', {
@@ -67,10 +87,10 @@ const Invoiceinfo = () => {
                     placeholder="Laskun numero"
                     className="Invoice-input"
                     onChange={handleChange}
-                    name="laskunNumero"
+                    name="LaskunNumero"
                     value={input.LaskunNumero}
                 />
-                <div className="Invoice-date">
+                <div>
                 <input 
                     type="date"
                     placeholder="Laskun pvm"
@@ -78,11 +98,11 @@ const Invoiceinfo = () => {
                     onChange={handleChange}
                     name="LaskunPvm"
                     value={input.LaskunPvm}
-                />
-                <span className="date-tooltip">Laskun pvm</span>                   
+                />                  
                 <input 
                     type="date"
                     placeholder="Eräpäivä"
+                    className="Invoice-date"
                     onChange={handleChange}
                     name="Erapaiva"
                     value={input.Erapaiva}
@@ -114,18 +134,18 @@ const Invoiceinfo = () => {
                     onChange={handleChange}
                     name="Viitenumero"
                     value={input.Viitenumero}
-                />                
+                />               
                 <input
                     id="Tarkistenumero" 
                     type="checkbox"
-                    defaultChecked
+                    checked={checked}
                     className="Invoice-checkbox"
-                    onChange={handleChange}
+                    onChange={toggleChecked}
                     name="Tarkistenumero"
+                    value={input.Tarkistenumero}
                 />
                 <label htmlFor="Viesti">Tarkistenumero</label>
-                </div>
-                <div>              
+                </div>             
                 <input 
                     type="text"
                     placeholder="Viesti"
@@ -134,10 +154,6 @@ const Invoiceinfo = () => {
                     name="Viesti"
                     value={input.Viesti}
                 />
-                <button className="Edit-btn">
-                    <i className="fas fa-edit"/>    
-                </button>
-                </div>
                 
                 <input
                     className="Invoice-input"
@@ -147,9 +163,18 @@ const Invoiceinfo = () => {
                 <input
                     className="Invoice-input"
                     type="text"
-                    value={input.Erapaiva}
+                    value={defaultInvoice.Tilinumero}
                 />
-                
+                <input
+                    className="Invoice-input"
+                    type="text"
+                    value={input.Viitenumero + input.Tarkistenumero}
+                />
+                <button 
+                    className="AddCustomer-btn"
+                    onClick={ addToInvoice }>
+                Lisää laskulle
+                </button>
         </div>
     )
 }
