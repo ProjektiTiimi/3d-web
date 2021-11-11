@@ -142,6 +142,11 @@
   font-size: 1.4rem;
 }
 
+.Invoice-select{
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin: 0.3rem 0rem
+}
 
 .filter{
   font-size: large;
