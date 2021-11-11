@@ -10,8 +10,59 @@ const InvoicePDF = () => {
         <div>
         <div className="invoicePDF" >
             <header className="invoicePDF-header">
-                <h2>invoicePDF-header</h2>
-                <h4>tänne kuva, päiväys, eräpäivä</h4>
+                <table className="header-table">
+                    <td style={{width:"390px"}}>
+                        <table className ="header-left-table" style={{width:"100%"}}>
+                            <tr>
+                                <img style={{maxHeight:"100%", width:"250px"}} src="https://www.oamk.fi/images/Logot/Suomi-www-sahkoinen-png-rgb/www_sivut_ja_sahkoiset_esitykset_suomeksi_varillinen-02.png" alt="" />
+                            </tr>
+                            <tr>
+                                <td style={{lineHeight:"20px"}}>
+                                    <br />
+                                    <div style={{fontSize:"16px", fontWeight:"bold"}}>{defaultCustomer.asiakkaanNimi}</div>
+                                    <br />
+                                    <div>{defaultCustomer.Postitusosoite}</div>
+                                    <div>{defaultCustomer.Toimipaikka}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style={{width:"300px", verticalAlign:"top"}}>
+                        <table className="header-right-table" style={{fontSize:"13px", textAlign:"right", width:"100%"}}>
+                            <tr>
+                                <td style={{fontWeight:"bold", fontSize:"17px", paddingBottom:"10px"}}>LASKU </td>
+                            </tr>
+                            <tr>
+                                <td>Päiväys</td>
+                                <td>{defaultInvoice.LaskunPvm}</td>
+                            </tr>
+                            <tr>
+                                <td>Laskun numero</td>
+                                <td>{defaultInvoice.LaskunNumero}</td>
+                            </tr>
+                            <tr>
+                                <td>Asiakasnumero</td>
+                                <td>default</td>
+                            </tr>
+                            <tr>
+                                <td>Eräpäivä</td>
+                                <td>{defaultInvoice.Erapaiva}</td>
+                            </tr>
+                            <tr>
+                                <td>Viivästyskorko</td>
+                                <td>{defaultInvoice.Viivastyskorko}</td>
+                            </tr>
+                            <tr>
+                                <td>Viitenumero</td>
+                                <td>{defaultInvoice.Viitenumero}</td>
+                            </tr>
+                            <tr>
+                                <td>Maksuehto</td>
+                                <td>{defaultInvoice.Maksuehto}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </table>
             </header>
             <body className="invoicePDF-body">
                 <div className="invoicePDF-rows">
