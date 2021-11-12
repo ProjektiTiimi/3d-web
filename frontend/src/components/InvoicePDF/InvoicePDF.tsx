@@ -1,14 +1,37 @@
+import React from "react";
 import { useContext } from "react";
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 import './invoicePDF.css'
 import CustomerContext from '../customerContext';
 import invoiceContext from "../invoiceContext";
 
+
 const InvoicePDF = () => {
     const { defaultCustomer, setDefaultCustomer } = useContext(CustomerContext);
     const { defaultInvoice, setDefaultInvoice } = useContext(invoiceContext);
+
+    const ClickPDF = async () => {
+        const element = document.getElementById("DivToPrint") as HTMLElement;
+        const canvas = await html2canvas(element, {
+            scale: 2,
+            
+        });
+        const data = canvas.toDataURL('image/png');
+     
+        const pdf = new jsPDF();
+        const imgProperties = pdf.getImageProperties(data);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight =
+          (imgProperties.height * pdfWidth) / imgProperties.width;
+     
+        pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save(`${defaultInvoice.LaskunNumero}.pdf`);
+      };
+
     return(
         <div>
-        <div className="invoicePDF" >
+        <div className="invoicePDF" id="DivToPrint">
             <header className="invoicePDF-header">
                 <table className="header-table">
                     <td style={{width:"390px"}}>
@@ -163,7 +186,10 @@ const InvoicePDF = () => {
             </body>
         </div>
         <div style={{marginTop:"50px"}}></div>
+        <div style={{textAlign:"center", marginBottom:"50px"}}><button className="savePDFButton" onClick={ClickPDF}>Lataa PDF</button></div>
+        
         </div>
+        
 )}
 
 export default InvoicePDF

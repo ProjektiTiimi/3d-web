@@ -9,6 +9,10 @@
     padding: 25px;
 }
 
+.divtoPrint{
+    width: 100%;
+}
+
 .invoicePDF-header{
     margin: 5px;
     width: 100%;
@@ -117,6 +121,17 @@
 }
 .customer-table .noRightBorder{
     border-right: none !important; 
+}
+
+.savePDFButton{
+    display: inline-block;
+    color: #fff;
+    background-color: #000;
+    margin: 5px;
+    font-size:large;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 4px;
 }
 
 
