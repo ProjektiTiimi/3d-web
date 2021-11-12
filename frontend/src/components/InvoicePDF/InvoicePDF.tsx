@@ -2,10 +2,12 @@ import { useContext } from "react";
 import './invoicePDF.css'
 import CustomerContext from '../customerContext';
 import invoiceContext from "../invoiceContext";
+import lineInfoContext from "../LineInfoContext";
 
 const InvoicePDF = () => {
     const { defaultCustomer, setDefaultCustomer } = useContext(CustomerContext);
     const { defaultInvoice, setDefaultInvoice } = useContext(invoiceContext);
+    const { defaultLineInfo, setDefaultLineInfo } = useContext(lineInfoContext);
     return(
         <div>
         <div className="invoicePDF" >
@@ -68,6 +70,14 @@ const InvoicePDF = () => {
                 <div className="invoicePDF-rows">
                     <h2>invoicePDF-rows</h2>
                     <h4>tähän laskun tiedot, ja kokonaissumma</h4>
+
+                    {defaultLineInfo.map((i) => {
+                        console.log("invoice: " + JSON.stringify(defaultLineInfo))
+                        return(
+                            <td>{i.selite}</td>
+                        )
+                    })}
+
                 </div>
                 <div className="invoicePDF-invoice">
                     <div className="invoicePDF-biller">

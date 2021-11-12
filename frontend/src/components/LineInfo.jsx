@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext, } from "react";
+import lineInfoContext from "./LineInfoContext";
 
-function LineInfo() {
+const LineInfo = () => {
+    const { defaultLineInfo, setDefaultLineInfo } = useContext(lineInfoContext);
+
     const [inputList, setInputList] = useState([{
         selite: "",
         kpl: 0,
@@ -28,6 +31,12 @@ function LineInfo() {
             hinta: 0,
             alv: "",
         }])
+    }
+
+    const addToInvoice = () => {
+        const list = [...inputList];
+        setDefaultLineInfo(list);
+        console.log(JSON.stringify(inputList));
     }
 
     return (
@@ -85,6 +94,11 @@ function LineInfo() {
                                     Lisää
                                 </button>
                             }
+                            <button
+                                className=""
+                                onClick={ addToInvoice }>
+                                Lisää laskuun
+                            </button>
                         </div>
                     </div>
                 )
