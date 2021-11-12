@@ -42,7 +42,7 @@ const InvoicePDF = () => {
                             </tr>
                             <tr>
                                 <td>Asiakasnumero</td>
-                                <td>default</td>
+                                <td>{defaultCustomer.YTunnus}</td>
                             </tr>
                             <tr>
                                 <td>Eräpäivä</td>
@@ -54,7 +54,7 @@ const InvoicePDF = () => {
                             </tr>
                             <tr>
                                 <td>Viitenumero</td>
-                                <td>{defaultInvoice.Viitenumero}</td>
+                                <td>{defaultInvoice.Viitenumero}{defaultInvoice.Tarkistenumero}</td>
                             </tr>
                             <tr>
                                 <td>Maksuehto</td>
@@ -133,7 +133,7 @@ const InvoicePDF = () => {
                                     <div>Viitenro <br />Ref.nr</div>
                                 </td>
                                 <td colSpan={2} style={{padding:"5px", borderTop:"2px solid #333", verticalAlign:"middle"}}>
-                                    {defaultInvoice.Viitenumero}
+                                    {defaultInvoice.Viitenumero}{defaultInvoice.Tarkistenumero}
                                 </td>
                             </tr>
                             <tr>
