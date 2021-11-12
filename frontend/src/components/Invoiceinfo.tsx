@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import Invoice from '../models/Invoice';
 import invoiceContext from './invoiceContext'
+import customerContext from "./customerContext";
 
 
 const Invoiceinfo = () => {    
@@ -8,19 +9,35 @@ const Invoiceinfo = () => {
     const [checked, setChecked] = useState<boolean>(true);
     const toggleChecked = () => setChecked(value => !value);
 
+    const {defaultCustomer} = useContext(customerContext);
+
+    let currentDate:Date = new Date();
+    let date:string = currentDate.toISOString().substr(0,10);
+    let invoiceDate:string = currentDate.toISOString();
+    let invoiceNmbr = Date.parse(invoiceDate);
+
+    let newDate = new Date(currentDate);
+    newDate.setDate(newDate.getDate() + 7);        
+    let dDate = newDate.toISOString().substr(0,10);
+
+    const[dueDate, setDueDate] = useState<string>(dDate);
+    const[payCondition, setPayCondition] = useState<string>("7");
+
+    
     const [input, setInput] = useState<Invoice>({
-        Tilinumero: "",
-        LaskunNumero: "",
-        LaskunPvm:"",
-        Erapaiva: "",
-        Maksuehto: "",
-        Viivastyskorko: "",
-        Viitenumero:"",
+        Tilinumero: defaultCustomer.YTunnus,
+        LaskunNumero: invoiceNmbr.toString(),
+        LaskunPvm: date,
+        Erapaiva: dueDate,
+        Maksuehto: payCondition + " päivää netto",
+        Viivastyskorko: "7,5 %",
+        Viitenumero: invoiceNmbr.toString(),
         Viesti: "",
         Tarkistenumero: ""
     })
     
-    let checkNum = "2";
+    const [checkNum, setCheckNum] = React.useState("2");
+
     if (checked == true) {
         input.Tarkistenumero = checkNum;
     }
@@ -37,9 +54,64 @@ const Invoiceinfo = () => {
         })
     }
 
+    const handleSelect = (e: ChangeEvent<HTMLSelectElement>): void => {
+        setPayCondition(e.target.value)}
+
+    const handleDays = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        setPayCondition(e.target.value)
+
+    }
+
+    const handleNumber = () => {
+        input.Tilinumero = defaultCustomer.YTunnus
+        console.log("Tilinumero " + input.Tilinumero);
+    }
+    
+
+    useEffect( () => {
+        let datum = Date.parse(input.LaskunPvm);
+        let newDate = new Date(datum);
+        newDate.setDate(newDate.getDate() + parseInt(payCondition));
+        console.log("LaskunPvm is : " + payCondition + " days");       
+        let fDate = newDate.toISOString().substr(0,10);
+        input.Erapaiva = fDate;
+        input.Maksuehto = payCondition + " päivää netto"
+        setDueDate(fDate)
+    }, [input.LaskunPvm, payCondition]);
+
+    /* useEffect( () => { 
+        setDefaultInvoice(input)
+    }, [input.Tilinumero]); */
+
+    useEffect( () => { 
+        setDueDate(input.Erapaiva)
+    }, [input.Erapaiva]);
+
     const addToInvoice = () => {
         setDefaultInvoice(input);
-        console.log(JSON.stringify(input))        
+        console.log(JSON.stringify(input));
+        calculate();  
+    }
+
+    const calculate = () => {
+        let tArray = input.Viitenumero.split('').reverse();
+        let tNumber:number = 0;
+        for(let i = 0; i < tArray.length; i++){
+            let addNum:number = +tArray[i];
+            if(i % 3 == 0){
+                tNumber += 7*addNum;
+            }
+            else if(i % 3 == 1){
+                tNumber += 3*addNum;
+            }
+            else if(i % 3 == 2){
+                tNumber += addNum;
+            }
+            else{
+            }
+        }
+        let checknumber = (10 - (tNumber % 10)).toString();
+        setCheckNum(checknumber);
     }
 
 
@@ -81,7 +153,6 @@ const Invoiceinfo = () => {
                     name="Tilinumero"
                     value={input.Tilinumero}
                 />
-                
                 <input 
                     type="text"
                     placeholder="Laskun numero"
@@ -105,10 +176,18 @@ const Invoiceinfo = () => {
                     className="Invoice-date"
                     onChange={handleChange}
                     name="Erapaiva"
-                    value={input.Erapaiva}
+                    value={dueDate}
                 />
                 </div>
+                
                 <div>
+                <select value={payCondition} 
+                        onChange={handleSelect}
+                        className="Invoice-select">
+                    <option value="7">7</option>
+                    <option value="14">14</option>
+                    <option value="21">21</option>
+                </select>
                 <input 
                     type="text"
                     placeholder="Maksuehto"
@@ -153,22 +232,6 @@ const Invoiceinfo = () => {
                     onChange={handleChange}
                     name="Viesti"
                     value={input.Viesti}
-                />
-                
-                <input
-                    className="Invoice-input"
-                    type="text"
-                    value={input.LaskunPvm}
-                />
-                <input
-                    className="Invoice-input"
-                    type="text"
-                    value={defaultInvoice.Tilinumero}
-                />
-                <input
-                    className="Invoice-input"
-                    type="text"
-                    value={input.Viitenumero + input.Tarkistenumero}
                 />
                 <button 
                     className="AddCustomer-btn"
