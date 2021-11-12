@@ -36,7 +36,8 @@ const Invoiceinfo = () => {
         Tarkistenumero: ""
     })
     
-    let checkNum = "2";
+    const [checkNum, setCheckNum] = React.useState("2");
+
     if (checked == true) {
         input.Tarkistenumero = checkNum;
     }
@@ -88,7 +89,29 @@ const Invoiceinfo = () => {
 
     const addToInvoice = () => {
         setDefaultInvoice(input);
-        console.log(JSON.stringify(input))        
+        console.log(JSON.stringify(input));
+        calculate();  
+    }
+
+    const calculate = () => {
+        let tArray = input.Viitenumero.split('').reverse();
+        let tNumber:number = 0;
+        for(let i = 0; i < tArray.length; i++){
+            let addNum:number = +tArray[i];
+            if(i % 3 == 0){
+                tNumber += 7*addNum;
+            }
+            else if(i % 3 == 1){
+                tNumber += 3*addNum;
+            }
+            else if(i % 3 == 2){
+                tNumber += addNum;
+            }
+            else{
+            }
+        }
+        let checknumber = (10 - (tNumber % 10)).toString();
+        setCheckNum(checknumber);
     }
 
 
