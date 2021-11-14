@@ -31,7 +31,10 @@ function Navbar() {
                         </Link>
                     </li>
                 </ul>
+
                 <LogOutButton />
+
+ 
             </nav>
 
 

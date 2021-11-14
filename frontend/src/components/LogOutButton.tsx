@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export function LogOutButton() {
     return (
-        <Link to='sign-up'>
+        <Link to='/userloginout'>
             <button className='btn'>Kirjaudu ulos
             </button>
         </Link>

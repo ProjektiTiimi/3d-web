@@ -32,7 +32,7 @@ export default class UserLogin extends Component<any, any> {
           username : this.state.username, 
           password : this.state.password})
       };
-      return fetch('http://localhost:8040/user/login', reqOptions)
+      return fetch('http://localhost:1337/user/login', reqOptions)
         .then(response => response.json())
         .then(username =>{
          localStorage.setItem('currentUser', JSON.stringify(username));
@@ -71,11 +71,13 @@ export default class UserLogin extends Component<any, any> {
     render(){
       return(
         <div className="login">
-        <h1>Kirjaudu</h1>
-        Käyttäjätunnus: <input type="text" onChange={this.updateUsername}></input>
-        Salasana: <input type="password" onChange={this.updatePassword}></input>
+        <h3>Kirjaudu</h3>
+          Käyttäjätunnus: <div><input type="text" onChange={this.updateUsername}></input></div>
+          Salasana: <div><input type="password" onChange={this.updatePassword}></input></div>
   
         <input type="submit" onClick={this.handleSubmit}></input>
+
+        <div>Rekisteröidy</div>
         </div>
       );
     }

@@ -16,6 +16,8 @@ import Editcustomer from './components/Editcustomer';
 import Navbar from './components/Navbar/Navbar';
 import TestiContext from './components/customerContext';
 import invoiceContext from './components/invoiceContext';
+import userloginout from './components/userloginout';
+
 
 function App() {
   const [defaultCustomer, setDefaultCustomer] = useState({
@@ -51,6 +53,7 @@ function App() {
             <Route path="/customers" component={Customerlist} />
             <invoiceContext.Provider value={invoiceInfo}>
             <Route path="/invoice" component={Invoice} />
+            <Route path="/userloginout" component={userloginout} />
             </invoiceContext.Provider>
           </Switch>
       </div>

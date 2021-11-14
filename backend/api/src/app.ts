@@ -41,6 +41,8 @@ app.post("/user/register", UserController.registerUser);
 app.post("/user/login", UserController.authenticateUser);
 app.delete("/user/:id", [authJwt.verifyToken], UserController.deleteUser);
 // TODO: invoice endpoints
+//app.post("/invoice")
+//app.get("/invoice/:id", [authJwt.verifyToken])
 
 const server = app.listen(app.get("port"), () => {
     console.log("App running on port ", app.get("port"));
