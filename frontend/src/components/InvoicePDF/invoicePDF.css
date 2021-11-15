@@ -123,11 +123,12 @@
     border-right: none !important; 
 }
 
-.savePDFButton{
+.savePDFButton, .printPDFButton{
+    width: 200px;
     display: inline-block;
     color: #fff;
     background-color: #000;
-    margin: 5px;
+    margin: 5px 109px;
     font-size:large;
     cursor: pointer;
     padding: 4px 10px;
