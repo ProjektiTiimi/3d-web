@@ -5,11 +5,13 @@ import { jsPDF } from 'jspdf';
 import './invoicePDF.css'
 import CustomerContext from '../customerContext';
 import invoiceContext from "../invoiceContext";
+import lineInfoContext from "../LineInfoContext";
 
 
 const InvoicePDF = () => {
     const { defaultCustomer, setDefaultCustomer } = useContext(CustomerContext);
     const { defaultInvoice, setDefaultInvoice } = useContext(invoiceContext);
+    const { defaultLineInfo, setDefaultLineInfo } = useContext(lineInfoContext);
     const virtuaaliviivakoodi = require('virtuaaliviivakoodi')
     const duedate = defaultInvoice.Erapaiva.substr(2,10).split("-").join("");
 
@@ -123,6 +125,19 @@ const InvoicePDF = () => {
                 <div className="invoicePDF-rows">
                     <h2>invoicePDF-rows</h2>
                     <h4>tähän laskun tiedot, ja kokonaissumma</h4>
+
+                    {defaultLineInfo.map((item) => {
+                        console.log("invoice: " + JSON.stringify(defaultLineInfo))
+                        return(
+                            <tr>
+                                <td>{item.selite}</td>
+                                <td>{item.kpl}</td>
+                                <td>{item.alv}%</td>
+                                <td>{item.hinta}€</td>
+                            </tr>
+                        )
+                    })}
+
                 </div>
                 <div className="invoicePDF-invoice">
                     <div className="invoicePDF-biller">
