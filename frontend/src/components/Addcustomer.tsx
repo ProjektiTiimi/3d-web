@@ -22,7 +22,7 @@ const Addcustomer = () => {
         fetch('http://localhost:1337/customer', {
             method: 'POST',
             headers: { 'Content-type': 'application/json',
-            'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlJvYm90dGlUZXN0aSIsImlhdCI6MTYzNjAxOTIyMH0.ZH-SV50DEzOV-8Yk8HzapjwsgMHyezFayUiucIM8x30'},
+            'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjQ0NzMwNn0.jI7gmVQ20WsbU3QvJijqhTfkjn8EtZyilUUFYs9jL9Q'},
             body: JSON.stringify({
                 YTunnus: input.YTunnus,
                 asiakkaanNimi: input.asiakkaanNimi,

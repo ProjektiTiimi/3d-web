@@ -16,6 +16,7 @@ import Editcustomer from './components/Editcustomer';
 import Navbar from './components/Navbar/Navbar';
 import TestiContext from './components/customerContext';
 import invoiceContext from './components/invoiceContext';
+import lineInfoContext from './components/LineInfoContext';
 
 function App() {
   const [defaultCustomer, setDefaultCustomer] = useState({
@@ -36,8 +37,16 @@ function App() {
         Tarkistenumero: "default"
     },);
 
+  const [defaultLineInfo, setDefaultLineInfo] = useState([{
+        selite: "",
+        kpl: 0,
+        hinta: 0,
+        alv: ""
+  }],);
+
   const value = {defaultCustomer, setDefaultCustomer};
   const invoiceInfo = {defaultInvoice, setDefaultInvoice};
+  const lineInfo = {defaultLineInfo, setDefaultLineInfo};
   return(
     <TestiContext.Provider value={value}>
       <Router>
@@ -50,7 +59,9 @@ function App() {
             <Route path="/editcustomer" component={Editcustomer} />
             <Route path="/customers" component={Customerlist} />
             <invoiceContext.Provider value={invoiceInfo}>
+            <lineInfoContext.Provider value={lineInfo}>
             <Route path="/invoice" component={Invoice} />
+            </lineInfoContext.Provider>
             </invoiceContext.Provider>
           </Switch>
       </div>

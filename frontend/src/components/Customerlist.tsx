@@ -14,7 +14,7 @@ function Customerlist() {
         const response = await fetch('http://localhost:1337/customers', {
             method: 'GET',
             headers: { 'Content-type': 'application/json',
-                        'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlJvYm90dGlUZXN0aSIsImlhdCI6MTYzNjAxOTIyMH0.ZH-SV50DEzOV-8Yk8HzapjwsgMHyezFayUiucIM8x30'}
+                        'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjQ0NzMwNn0.jI7gmVQ20WsbU3QvJijqhTfkjn8EtZyilUUFYs9jL9Q'}
         });
         const data = await response.json();
         setTotal(data.length);
