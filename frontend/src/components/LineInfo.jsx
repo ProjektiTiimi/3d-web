@@ -74,10 +74,10 @@ const LineInfo = () => {
                             className="Invoice-input"
                             name="alv"
                             onChange={e => handleInputChange(e, i)}>
-                            <option value="24">24%</option>
-                            <option value="14">14%</option>
-                            <option value="10">10%</option>
                             <option value="0">0%</option>
+                            <option value="10">10%</option>
+                            <option value="14">14%</option>
+                            <option value="24">24%</option>
                         </select>
                         <div className="Invoice">
                             {inputList.length !== 1 && 

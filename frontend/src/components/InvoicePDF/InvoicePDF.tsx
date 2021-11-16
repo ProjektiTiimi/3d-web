@@ -71,10 +71,15 @@ const InvoicePDF = () => {
                     <h2>invoicePDF-rows</h2>
                     <h4>tähän laskun tiedot, ja kokonaissumma</h4>
 
-                    {defaultLineInfo.map((i) => {
+                    {defaultLineInfo.map((item) => {
                         console.log("invoice: " + JSON.stringify(defaultLineInfo))
                         return(
-                            <td>{i.selite}</td>
+                            <tr>
+                                <td>{item.selite}</td>
+                                <td>{item.kpl}</td>
+                                <td>{item.alv}%</td>
+                                <td>{item.hinta}€</td>
+                            </tr>
                         )
                     })}
 

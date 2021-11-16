@@ -1,21 +1,36 @@
 import React , { createContext } from 'react';
-import Items from '../models/Item';
+import Item from '../models/Item';
 
-type contextType = {
-    defaultLineInfo: Items,
-    setDefaultLineInfo: (defaultLineInfo: Items) => void
+// type contextType = {
+//     defaultLineInfo: Items,
+//     setDefaultLineInfo: (defaultLineInfo: Items) => void
+// }
+
+interface contextType {
+    defaultLineInfo:Item[]
+    setDefaultLineInfo:(data:Item[]) => void
 }
 
-const lineInfoContext = createContext<contextType>({
-    defaultLineInfo: [{
-        selite: "default",
+const defaultLineInfo: contextType = {
+    defaultLineInfo:[{
+        selite: "",
         kpl: 0,
         hinta: 0,
-        alv: "default",
+        alv: ""
     }],
-    setDefaultLineInfo: (defaultLineInfo : Items) => {}
-})
+    setDefaultLineInfo: (data) => {}
+}
 
+const lineInfoContext = createContext<contextType>(defaultLineInfo)
 
+// const lineInfoContext = createContext<contextType>({
+//     defaultLineInfo: [{
+//         selite: "default",
+//         kpl: 0,
+//         hinta: 0,
+//         alv: "default",
+//     }],
+//     setDefaultLineInfo: (defaultLineInfo : Items) => {}
+// })
 
 export default lineInfoContext

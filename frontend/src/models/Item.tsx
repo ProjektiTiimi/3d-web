@@ -7,4 +7,6 @@ interface Item{
     alv: string;
 }
 
-export default interface Items extends Array<Item>{};
+export default Item
+
+// export default interface Items extends Array<Item>{};
