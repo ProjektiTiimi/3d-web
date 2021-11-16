@@ -152,7 +152,7 @@
   font-size: large;
 }
 
-.prevButton, .nextButton, .updateButton{
+.prevButton, .nextButton, .updateButton, .savePDF-Button{
   padding: 8px 20px;
   border-radius: 4px;
   outline: none;

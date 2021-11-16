@@ -1,16 +1,69 @@
+import { useBarcode } from 'react-barcodes';
 import { useContext } from "react";
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 import './invoicePDF.css'
 import CustomerContext from '../customerContext';
 import invoiceContext from "../invoiceContext";
-import lineInfoContext from "../LineInfoContext";
+
 
 const InvoicePDF = () => {
     const { defaultCustomer, setDefaultCustomer } = useContext(CustomerContext);
     const { defaultInvoice, setDefaultInvoice } = useContext(invoiceContext);
-    const { defaultLineInfo, setDefaultLineInfo } = useContext(lineInfoContext);
+    const virtuaaliviivakoodi = require('virtuaaliviivakoodi')
+    const duedate = defaultInvoice.Erapaiva.substr(2,10).split("-").join("");
+
+    const options = {
+        iban: defaultInvoice.Tilinumero,
+        reference: defaultInvoice.Viitenumero,
+        cents: 1225,
+        due: duedate,
+      }
+
+    let tuloste = "123456";
+
+    try {
+        tuloste =virtuaaliviivakoodi(options);
+    } catch (error) {
+        console.log(error)
+    }
+
+
+    const { inputRef } = 
+        useBarcode({
+            value: tuloste,
+            options: {
+                format: "CODE128C",
+                background: '#ffffff',
+                height: 45,
+                width: 1,
+                fontSize: 11
+            }
+        })
+
+      
+
+    const ClickPDF = async () => {
+        const element = document.getElementById("DivToPrint") as HTMLElement;
+        const canvas = await html2canvas(element, {
+            scale: 3,
+            
+        });
+        const data = canvas.toDataURL('image/png');
+     
+        const pdf = new jsPDF();
+        const imgProperties = pdf.getImageProperties(data);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight =
+          (imgProperties.height * pdfWidth) / imgProperties.width;
+     
+        pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save(`${defaultInvoice.LaskunNumero}.pdf`);
+      };
+
     return(
         <div>
-        <div className="invoicePDF" >
+        <div className="invoicePDF" id="DivToPrint">
             <header className="invoicePDF-header">
                 <table className="header-table">
                     <td style={{width:"390px"}}>
@@ -70,19 +123,6 @@ const InvoicePDF = () => {
                 <div className="invoicePDF-rows">
                     <h2>invoicePDF-rows</h2>
                     <h4>tähän laskun tiedot, ja kokonaissumma</h4>
-
-                    {defaultLineInfo.map((item) => {
-                        console.log("invoice: " + JSON.stringify(defaultLineInfo))
-                        return(
-                            <tr>
-                                <td>{item.selite}</td>
-                                <td>{item.kpl}</td>
-                                <td>{item.alv}%</td>
-                                <td>{item.hinta}€</td>
-                            </tr>
-                        )
-                    })}
-
                 </div>
                 <div className="invoicePDF-invoice">
                     <div className="invoicePDF-biller">
@@ -172,13 +212,20 @@ const InvoicePDF = () => {
                                 </td>
                             </tr>
                         </table>
-                        <div style={{height:"72px"}}>Tähän viivakoodi ja ehdot</div>
+                        <div style={{height:"72px"}}>
+                            <img ref={inputRef} />
+                        </div>
                     </div>
                 </div>
             </body>
         </div>
         <div style={{marginTop:"50px"}}></div>
+        <div style={{textAlign:"center", marginBottom:"50px"}}>
+            <button className="printPDFButton" onClick={ClickPDF}>Lataa PDF</button>
+            <button className="savePDFButton">Tallenna lasku</button>
         </div>
+        </div>
+        
 )}
 
 export default InvoicePDF
