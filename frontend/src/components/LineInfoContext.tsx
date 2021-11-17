@@ -15,8 +15,8 @@ const defaultLineInfo: contextType = {
     defaultLineInfo:[{
         selite: "",
         kpl: 0,
-        hinta: 0,
-        alv: ""
+        hinta: 0.00,
+        alv: 24
     }],
     setDefaultLineInfo: (data) => {}
 }

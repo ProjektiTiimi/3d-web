@@ -40,8 +40,8 @@ function App() {
   const [defaultLineInfo, setDefaultLineInfo] = useState([{
         selite: "",
         kpl: 0,
-        hinta: 0,
-        alv: ""
+        hinta: 0.00,
+        alv: 24
   }],);
 
   const value = {defaultCustomer, setDefaultCustomer};

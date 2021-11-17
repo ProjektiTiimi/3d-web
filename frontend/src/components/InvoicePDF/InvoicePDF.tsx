@@ -122,21 +122,47 @@ const InvoicePDF = () => {
                 </table>
             </header>
             <body className="invoicePDF-body">
-                <div className="invoicePDF-rows">
-                    <h2>invoicePDF-rows</h2>
-                    <h4>tähän laskun tiedot, ja kokonaissumma</h4>
+                <div className="invoicePDF-rows" style={{fontSize:"13px"}}>
+                    <table width="100%">
+                        <th className="lineInfo-c1">Selite</th>
+                        <th className="lineInfo-c2">Kpl</th>
+                        <th className="lineInfo-c3">à-hinta</th>
+                        <th className="lineInfo-c4">ALV %</th>
+                        <th className="lineInfo-c5">Yhteensä €</th>
 
                     {defaultLineInfo.map((item) => {
                         console.log("invoice: " + JSON.stringify(defaultLineInfo))
                         return(
                             <tr>
-                                <td>{item.selite}</td>
-                                <td>{item.kpl}</td>
-                                <td>{item.alv}%</td>
-                                <td>{item.hinta}€</td>
+                                <td className="lineInfo-c1">{item.selite}</td>
+                                <td className="lineInfo-c2">{item.kpl}</td>
+                                <td className="lineInfo-c3">{item.hinta}</td>
+                                <td className="lineInfo-c4">{item.alv}</td>
+                                <td className="lineInfo-c5">{item.hinta * item.kpl}</td>
                             </tr>
                         )
                     })}
+                    </table>
+                    <table width="100%">
+                        <tr>
+                            <td className="total-c1">
+                                <br></br>
+                                Yhteensä (veroton)
+                            </td>
+                            <td className="total-c2">
+                                <br></br>
+                                0.00 €
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="total-c1">Veron osuus</td>
+                            <td className="total-c2">0.00 €</td>
+                        </tr>
+                        <tr>
+                            <td className="total-c3">YHTEENSÄ</td>
+                            <td className="total-c3">0.00 €</td>
+                        </tr>
+                    </table>
 
                 </div>
                 <div className="invoicePDF-invoice">

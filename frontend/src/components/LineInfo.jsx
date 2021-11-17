@@ -7,8 +7,8 @@ const LineInfo = () => {
     const [inputList, setInputList] = useState([{
         selite: "",
         kpl: 0,
-        hinta: 0,
-        alv: "",
+        hinta: 0.00,
+        alv: 24,
     }])
 
     const handleInputChange = (e, index) => {
@@ -28,8 +28,8 @@ const LineInfo = () => {
         setInputList([...inputList, {
             selite: "",
             kpl: 0,
-            hinta: 0,
-            alv: "",
+            hinta: 0.00,
+            alv: 24,
         }])
     }
 
@@ -45,11 +45,11 @@ const LineInfo = () => {
 
             {inputList.map((x, i) => {
                 return (
-                    <div className="Invoice">
+                    <div>
                         <input 
                             type="text"
                             placeholder="Selite"
-                            className="Invoice-input"
+                            className="lineInfo-input"
                             onChange={e => handleInputChange(e, i)}
                             name="selite"
                             value={x.selite}
@@ -57,7 +57,7 @@ const LineInfo = () => {
                         <input 
                             type="number"
                             placeholder="Kpl"
-                            className="Invoice-input"
+                            className="lineInfo-price"
                             onChange={e => handleInputChange(e, i)}
                             name="kpl"
                             value={x.kpl}
@@ -65,40 +65,40 @@ const LineInfo = () => {
                         <input 
                             type="number"
                             placeholder="Hinta"
-                            className="Invoice-input"
+                            className="lineInfo-price"
                             onChange={e => handleInputChange(e, i)}
                             name="hinta"
                             value={x.hinta}
                         />
                         <select 
-                            className="Invoice-input"
+                            className="Invoice-select"
                             name="alv"
                             onChange={e => handleInputChange(e, i)}>
-                            <option value="0">0%</option>
-                            <option value="10">10%</option>
-                            <option value="14">14%</option>
                             <option value="24">24%</option>
+                            <option value="14">14%</option>
+                            <option value="10">10%</option>
+                            <option value="0">0%</option>
                         </select>
-                        <div className="Invoice">
+                        <div>
+                            <button
+                                className="AddCustomer-btn"
+                                onClick={ addToInvoice }>
+                                Lisää laskuun
+                            </button>
+                            {inputList.length - 1 === i &&
+                                <button
+                                    className="AddCustomer-btn"
+                                    onClick={handleAddClick}>
+                                    Lisää Rivi
+                                </button>
+                            }
                             {inputList.length !== 1 && 
                                 <button
-                                    className=""
+                                    className="AddCustomer-btn"
                                     onClick={() => handleRemoveClick(i)}>
                                     Poista
                                 </button>
                             }
-                            {inputList.length - 1 === i &&
-                                <button 
-                                    className=""
-                                    onClick={handleAddClick}>
-                                    Lisää
-                                </button>
-                            }
-                            <button
-                                className=""
-                                onClick={ addToInvoice }>
-                                Lisää laskuun
-                            </button>
                         </div>
                     </div>
                 )
@@ -110,7 +110,7 @@ const LineInfo = () => {
                 className="Invoice-checkbox"
                 name="Verollinen hinta"
                 />
-            <label>Verollinen Hinta</label>
+            <label htmlFor="Viesti">Verollinen Hinta</label>
         </div>
     )
 }
