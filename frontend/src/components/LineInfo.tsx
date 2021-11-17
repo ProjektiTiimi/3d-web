@@ -4,6 +4,9 @@ import lineInfoContext from "./LineInfoContext";
 const LineInfo = () => {
     const { defaultLineInfo, setDefaultLineInfo } = useContext(lineInfoContext);
 
+    const [taxChecked, setTaxChecked] = useState<boolean>(false);
+    const toggleTaxChecked = () => setTaxChecked(value => !value);
+
     const [inputList, setInputList] = useState([{
         selite: "",
         kpl: 0,
@@ -11,14 +14,14 @@ const LineInfo = () => {
         alv: 24,
     }])
 
-    const handleInputChange = (e, index) => {
+    const handleInputChange = (e:any, index:number) => {
         const { name, value } = e.target;
-        const list = [...inputList];
+        const list:any = [...inputList];
         list[index][name] = value;
         setInputList(list);
     }
 
-    const handleRemoveClick = index => {
+    const handleRemoveClick = (index: number) => {
         const list = [...inputList];
         list.splice(index, 1);
         setInputList(list);
@@ -35,8 +38,12 @@ const LineInfo = () => {
 
     const addToInvoice = () => {
         const list = [...inputList];
+        if (taxChecked) {
+            for (let i=0; i<list.length; i++) {
+                list[i].hinta = list[i].hinta * (100-list[i].alv)/100
+            }
+        }
         setDefaultLineInfo(list);
-        console.log(JSON.stringify(inputList));
     }
 
     return (
@@ -80,16 +87,11 @@ const LineInfo = () => {
                             <option value="0">0%</option>
                         </select>
                         <div>
-                            <button
-                                className="AddCustomer-btn"
-                                onClick={ addToInvoice }>
-                                Lisää laskuun
-                            </button>
                             {inputList.length - 1 === i &&
                                 <button
                                     className="AddCustomer-btn"
                                     onClick={handleAddClick}>
-                                    Lisää Rivi
+                                    Lisää rivi
                                 </button>
                             }
                             {inputList.length !== 1 && 
@@ -103,12 +105,18 @@ const LineInfo = () => {
                     </div>
                 )
             })}
-
+            <button
+                className="AddCustomer-btn"
+                onClick={ addToInvoice }>
+                Lisää laskulle
+            </button>
             <input
                 id="VerollinenHinta" 
                 type="checkbox"
                 className="Invoice-checkbox"
                 name="Verollinen hinta"
+                checked={taxChecked}
+                onChange={toggleTaxChecked}
                 />
             <label htmlFor="Viesti">Verollinen Hinta</label>
         </div>

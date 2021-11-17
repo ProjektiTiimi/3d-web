@@ -138,7 +138,7 @@ const InvoicePDF = () => {
                                 <td className="lineInfo-c2">{item.kpl}</td>
                                 <td className="lineInfo-c3">{item.hinta}</td>
                                 <td className="lineInfo-c4">{item.alv}</td>
-                                <td className="lineInfo-c5">{item.hinta * item.kpl}</td>
+                                <td className="lineInfo-c5">{((item.hinta + item.hinta*(item.alv/100))) * item.kpl}</td>
                             </tr>
                         )
                     })}
