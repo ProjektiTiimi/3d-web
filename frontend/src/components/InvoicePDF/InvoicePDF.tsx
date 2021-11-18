@@ -14,6 +14,9 @@ const InvoicePDF = () => {
     const { defaultLineInfo, setDefaultLineInfo } = useContext(lineInfoContext);
     const virtuaaliviivakoodi = require('virtuaaliviivakoodi')
     const duedate = defaultInvoice.Erapaiva.substr(2,10).split("-").join("");
+    let totalTaxed:number = 0;
+    let totalTax:number = 0;
+    let total:number = 0;
 
     const options = {
         iban: defaultInvoice.Tilinumero,
@@ -138,7 +141,7 @@ const InvoicePDF = () => {
                                 <td className="lineInfo-c2">{item.kpl}</td>
                                 <td className="lineInfo-c3">{item.hinta}</td>
                                 <td className="lineInfo-c4">{item.alv}</td>
-                                <td className="lineInfo-c5">{((item.hinta + item.hinta*(item.alv/100))) * item.kpl}</td>
+                                <td className="lineInfo-c5">{(item.hinta + item.hinta*item.alv/100) * item.kpl}</td>
                             </tr>
                         )
                     })}
@@ -151,16 +154,25 @@ const InvoicePDF = () => {
                             </td>
                             <td className="total-c2">
                                 <br></br>
-                                0.00 €
+                                {defaultLineInfo.map((item) => {
+                                    total = total + item.hinta
+                                    return (total)
+                                })} €
                             </td>
                         </tr>
                         <tr>
                             <td className="total-c1">Veron osuus</td>
-                            <td className="total-c2">0.00 €</td>
+                            <td className="total-c2">{defaultLineInfo.map((item) => {
+                                totalTax = totalTax + ((item.hinta*(item.alv/100)))
+                                return (totalTax)
+                            })} €</td>
                         </tr>
                         <tr>
                             <td className="total-c3">YHTEENSÄ</td>
-                            <td className="total-c3">0.00 €</td>
+                            <td className="total-c3">{defaultLineInfo.map((item) => {
+                                totalTaxed = totalTaxed + ((item.hinta + item.hinta*(item.alv/100))) * item.kpl;
+                                return (totalTaxed);
+                            })} €</td>
                         </tr>
                     </table>
 

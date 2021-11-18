@@ -115,7 +115,6 @@ const LineInfo = () => {
                 type="checkbox"
                 className="Invoice-checkbox"
                 name="Verollinen hinta"
-                checked={taxChecked}
                 onChange={toggleTaxChecked}
                 />
             <label htmlFor="Viesti">Verollinen Hinta</label>
