@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+const { encrypt, decrypt } = require('./cipher');
 
 export interface ICustomer extends mongoose.Document{
     YTunnus: String;
@@ -10,11 +11,17 @@ export interface ICustomer extends mongoose.Document{
 
 export const CustomerSchema = new mongoose.Schema({
     YTunnus: { type: String },
-    asiakkaanNimi: { type: String, required: true },
-    Postitusosoite: { type: String, required: true },
-    Postinumero: { type: String, required: true },
-    Toimipaikka: {  type: String, required: true },
-})
+    asiakkaanNimi: { type: String, required: true,  get: decrypt, set: encrypt  },
+    Postitusosoite: { type: String, required: true,  get: decrypt, set: encrypt  },
+    Postinumero: { type: String, required: true,  get: decrypt, set: encrypt  },
+    Toimipaikka: {  type: String, required: true,  get: decrypt, set: encrypt  },
+    },
+    {
+        versionKey: false,
+        toObject: { getters: true},
+        toJSON: { getters: true}
+    }
+)
 
 const Customer = mongoose.model<ICustomer>("Customer", CustomerSchema);
 

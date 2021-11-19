@@ -96,3 +96,15 @@ export const deleteUser = (req: Request, res: Response) => {
         }
     });
 }
+
+export const getUser = (req: Request, res: Response) =>{
+    const user = User.findOne({_id: req.params.id }, (err: any) => {
+        if (err){
+            res.status(500).end();
+        }
+        else{ 
+            res.status(200).send(user);
+            
+        }
+    })
+}
