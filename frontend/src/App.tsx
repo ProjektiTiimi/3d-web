@@ -40,8 +40,10 @@ function App() {
   const [defaultLineInfo, setDefaultLineInfo] = useState([{
         selite: "",
         kpl: 0,
-        hinta: 0.00,
+        hinta: 0,
         alv: 24,
+        price: 0,
+        total: 0,
     }],);
 
   const taxChecked = false

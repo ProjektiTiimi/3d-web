@@ -5,6 +5,8 @@ interface Item{
     kpl: number;
     hinta: number;
     alv: number;
+    price: number;
+    total: number;
 }
 
 export default Item

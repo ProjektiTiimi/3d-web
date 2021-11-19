@@ -139,9 +139,9 @@ const InvoicePDF = () => {
                             <tr>
                                 <td className="lineInfo-c1">{item.selite}</td>
                                 <td className="lineInfo-c2">{item.kpl}</td>
-                                <td className="lineInfo-c3">{item.hinta}</td>
+                                <td className="lineInfo-c3">{item.price}</td>
                                 <td className="lineInfo-c4">{item.alv}</td>
-                                <td className="lineInfo-c5">{(item.hinta + item.hinta*item.alv/100) * item.kpl}</td>
+                                <td className="lineInfo-c5">{item.total}</td>
                             </tr>
                         )
                     })}
@@ -155,24 +155,22 @@ const InvoicePDF = () => {
                             <td className="total-c2">
                                 <br></br>
                                 {defaultLineInfo.map((item) => {
-                                    total = total + item.hinta
-                                    return (total)
-                                })} €
+                                    total = total + item.price
+                                })}{total} €
                             </td>
                         </tr>
                         <tr>
                             <td className="total-c1">Veron osuus</td>
                             <td className="total-c2">{defaultLineInfo.map((item) => {
-                                totalTax = totalTax + ((item.hinta*(item.alv/100)))
-                                return (totalTax)
-                            })} €</td>
+                                totalTax = totalTax + item.total * item.alv/100
+                            })}{totalTax} €</td>
                         </tr>
                         <tr>
                             <td className="total-c3">YHTEENSÄ</td>
-                            <td className="total-c3">{defaultLineInfo.map((item) => {
-                                totalTaxed = totalTaxed + ((item.hinta + item.hinta*(item.alv/100))) * item.kpl;
-                                return (totalTaxed);
-                            })} €</td>
+                            <td className="total-c3">
+                                {defaultLineInfo.map((item) => {
+                                totalTaxed = +totalTaxed + +item.total;
+                            })}{totalTaxed} €</td>
                         </tr>
                     </table>
 
@@ -259,7 +257,7 @@ const InvoicePDF = () => {
                                     <table style={{width:"100%", height:"100%"}}>
                                         <tr>
                                             <td className="td noRightBorder noBottomBorder" style={{fontSize: "10px", lineHeight:"10px "}}>Euro</td>
-                                            <td className="td noRightBorder noBottomBorder" style={{verticalAlign:"middle", textAlign:"right"}}>120.00</td>
+                                            <td className="td noRightBorder noBottomBorder" style={{verticalAlign:"middle", textAlign:"right"}}>{totalTaxed}</td>
                                         </tr>
                                     </table>
                                 </td>

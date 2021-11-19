@@ -10,8 +10,10 @@ const LineInfo = () => {
     const [inputList, setInputList] = useState([{
         selite: "",
         kpl: 0,
-        hinta: 0.00,
-        alv: 24,
+        hinta: 0,
+        alv: 24.0,
+        price: 0,
+        total: 0,
     }])
 
     const handleInputChange = (e:any, index:number) => {
@@ -31,8 +33,10 @@ const LineInfo = () => {
         setInputList([...inputList, {
             selite: "",
             kpl: 0,
-            hinta: 0.00,
-            alv: 24,
+            hinta: 0,
+            alv: 24.0,
+            price: 0,
+            total: 0,
         }])
     }
 
@@ -40,7 +44,15 @@ const LineInfo = () => {
         const list = [...inputList];
         if (taxChecked) {
             for (let i=0; i<list.length; i++) {
-                list[i].hinta = list[i].hinta * (100-list[i].alv)/100
+                list[i].price = list[i].hinta
+                list[i].total = list[i].price * list[i].kpl
+                list[i].price = list[i].price * (100-list[i].alv)/100
+            }
+        }
+        else {
+            for (let i=0; i<list.length; i++) {
+                list[i].price = list[i].hinta
+                list[i].total = (+list[i].price + +list[i].price * list[i].alv/100) * list[i].kpl
             }
         }
         setDefaultLineInfo(list);
@@ -68,7 +80,7 @@ const LineInfo = () => {
                             onChange={e => handleInputChange(e, i)}
                             name="kpl"
                             value={x.kpl}
-                        />
+                        /><label className="lineInfo-label">Kpl</label>
                         <input 
                             type="number"
                             placeholder="Hinta"
@@ -76,7 +88,7 @@ const LineInfo = () => {
                             onChange={e => handleInputChange(e, i)}
                             name="hinta"
                             value={x.hinta}
-                        />
+                        /><label className="lineInfo-label">Hinta</label>
                         <select 
                             className="Invoice-select"
                             name="alv"
@@ -85,7 +97,7 @@ const LineInfo = () => {
                             <option value="14">14%</option>
                             <option value="10">10%</option>
                             <option value="0">0%</option>
-                        </select>
+                        </select><label className="lineInfo-label">ALV</label>
                         <div>
                             {inputList.length - 1 === i &&
                                 <button
