@@ -22,7 +22,7 @@ function Customerlist() {
             const response = await fetch(`${configData.API_URL}:${configData.API_PORT}/customers`, {
                 method: 'GET',
                 headers: { 'Content-type': 'application/json',
-                            'x-access-token': '1eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjQ0NzMwNn0.jI7gmVQ20WsbU3QvJijqhTfkjn8EtZyilUUFYs9jL9Q'}
+                            'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjQ0NzMwNn0.jI7gmVQ20WsbU3QvJijqhTfkjn8EtZyilUUFYs9jL9Q'}
             });
             const data = await response.json();
             if(response.ok){
