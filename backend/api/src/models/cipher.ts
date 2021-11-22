@@ -1,10 +1,12 @@
 'use strict';
 const crypto112 = require('crypto');
+require('dotenv').config()
 
-// Must be 256 bits (32 characters)
-const ENCRYPTION_KEY = "MZIbF8jCkxFYJovznHhqi6OA7FGU5mxF";
+// Must be 256 bits (32 characters) (process.env.NODE_ENV as string);
+
+const ENCRYPTION_KEY = (process.env.ENCRYPTION_KEY as string);
 // Must be 16 character for AES-256-CBC
-const ivString = "LuU6OGSpiVNwSFYY";
+const ivString = (process.env.IVString as string);
 
 function encrypt(text:string) {
     text = text.toString();

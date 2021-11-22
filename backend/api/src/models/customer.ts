@@ -10,7 +10,7 @@ export interface ICustomer extends mongoose.Document{
 }
 
 export const CustomerSchema = new mongoose.Schema({
-    YTunnus: { type: String },
+    YTunnus: { type: String, required: true,  get: decrypt, set: encrypt   },
     asiakkaanNimi: { type: String, required: true,  get: decrypt, set: encrypt  },
     Postitusosoite: { type: String, required: true,  get: decrypt, set: encrypt  },
     Postinumero: { type: String, required: true,  get: decrypt, set: encrypt  },
