@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Customer from '../models/customer';
+import configData from "../config/configData.json"
+
+
 
 
 const Addcustomer = () => {
@@ -19,7 +22,7 @@ const Addcustomer = () => {
     }
 
     const handleClick = (): void =>{
-        fetch('http://localhost:1337/customer', {
+        fetch(`${configData.API_URL}:${configData.API_PORT}/customer`, {
             method: 'POST',
             headers: { 'Content-type': 'application/json',
             'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjQ0NzMwNn0.jI7gmVQ20WsbU3QvJijqhTfkjn8EtZyilUUFYs9jL9Q'},

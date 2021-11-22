@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Customer from '../models/customer';
+import configData from "../config/configData.json"
 
 //url pitää olla muotoa http://localhost:3000/editcustomer/?id=61827ee5878942efcc8fb40b
 const Editcustomer = () => {
@@ -9,7 +10,7 @@ const Editcustomer = () => {
 
     const getData = async () => {
         console.log(id)
-        const response = await fetch('http://localhost:1337/customer/' + id, {
+        const response = await fetch(`${configData.API_URL}:${configData.API_PORT}/customer/` + id, {
             method:'GET',
             headers:{'Content-type':'application/json',
                     'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjQ0NzMwNn0.jI7gmVQ20WsbU3QvJijqhTfkjn8EtZyilUUFYs9jL9Q'}
@@ -39,7 +40,7 @@ const Editcustomer = () => {
     }
 
     const handleClick = (): void =>{
-        fetch('http://localhost:1337/customer/' + id, {
+        fetch(`${configData.API_URL}:${configData.API_PORT}/customer/` + id, {
             method: 'PATCH',
             headers: { 'Content-type': 'application/json',
                         'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjAyOTM1MX0._9mpMIpYLJD_FwxjbfpjufnBM1MaV59FArj87tJGRl4'},
