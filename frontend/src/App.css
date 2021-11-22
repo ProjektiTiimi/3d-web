@@ -194,3 +194,62 @@
   background-color: #156383;
   color: #fff
 }
+
+.lineInfo-input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin: 0.3rem 0rem;
+  width: 100%;
+}
+
+.lineInfo-price {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin: 0.3rem 0rem;
+  width: 25%;
+}
+
+.lineInfo-label{
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+}
+
+.lineInfo-c1 {
+  width: 65%;
+  text-align: left;
+}
+
+.lineInfo-c2 {
+  width: 5%;
+  text-align: right;
+}
+
+.lineInfo-c3 {
+  width: 9%;
+  text-align: right;
+}
+
+.lineInfo-c4 {
+  width: 9%;
+  text-align: right;
+}
+
+.lineInfo-c5 {
+  width: 13%;
+  text-align: right;
+}
+
+.total-c1 {
+  width: 86%;
+  text-align: right;
+}
+
+.total-c2 {
+  text-align: right;
+}
+
+.total-c3 {
+  width: 86%;
+  text-align: right;
+  font-weight: bold;
+}

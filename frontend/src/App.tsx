@@ -41,8 +41,12 @@ function App() {
         selite: "",
         kpl: 0,
         hinta: 0,
-        alv: ""
-  }],);
+        alv: 24,
+        price: 0,
+        total: 0,
+    }],);
+
+  const taxChecked = false
 
   const value = {defaultCustomer, setDefaultCustomer};
   const invoiceInfo = {defaultInvoice, setDefaultInvoice};

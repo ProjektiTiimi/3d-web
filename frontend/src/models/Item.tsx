@@ -4,7 +4,9 @@ interface Item{
     selite: string;
     kpl: number;
     hinta: number;
-    alv: string;
+    alv: number;
+    price: number;
+    total: number;
 }
 
 export default Item
