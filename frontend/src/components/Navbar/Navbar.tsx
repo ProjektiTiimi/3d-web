@@ -13,7 +13,7 @@ function Navbar() {
     return (
         <>
             <nav className='navbar'>
-                <Link to='/' className='navbar-logo'>
+                <Link to='/userloginout' className='navbar-logo'>
                     3D-WEB
                 </Link>
                 <div className='menu-icon' onClick={handleClick}>

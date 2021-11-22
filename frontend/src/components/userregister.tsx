@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios'
 
-function RegisterUser(){
+export function RegisterUser(){
     const [user,setUser] = useState({
         username:'',
         password:'',
@@ -40,3 +40,4 @@ function RegisterUser(){
     )
 }
 
+export default RegisterUser;
