@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . /api/
 
+RUN npm run setKeys
+
 EXPOSE 1337
 
 CMD ["npm", "run", "dev"]

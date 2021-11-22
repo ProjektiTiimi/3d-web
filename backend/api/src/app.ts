@@ -4,6 +4,7 @@ import * as CustomerController from './routes/customerRoutes';
 import * as UserController from './routes/userRoutes';
 import authJwt from './controllers/authController'
 import {PORT, DBURI} from './config/config';
+import path from 'path/posix';
 
 const app: Application = express();
 const db: string = DBURI;
