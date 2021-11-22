@@ -20,21 +20,21 @@ import lineInfoContext from './components/LineInfoContext';
 
 function App() {
   const [defaultCustomer, setDefaultCustomer] = useState({
-    YTunnus : "default",
-    asiakkaanNimi: "default",
-    Postitusosoite: "default",
-    Postinumero: "default",
-    Toimipaikka: "default"
+    YTunnus : "",
+    asiakkaanNimi: "",
+    Postitusosoite: "",
+    Postinumero: "",
+    Toimipaikka: ""
   },);
 
   const [defaultInvoice, setDefaultInvoice] = useState({    
-        Tilinumero: "default",
-        LaskunNumero: "default",
-        LaskunPvm: "default",
-        Erapaiva: "default",
-        Viitenumero: "default",
-        Viesti: "default",
-        Tarkistenumero: "default"
+        Tilinumero: "",
+        LaskunNumero: "",
+        LaskunPvm: "",
+        Erapaiva: "",
+        Viitenumero: "",
+        Viesti: "",
+        Tarkistenumero: ""
     },);
 
   const [defaultLineInfo, setDefaultLineInfo] = useState([{
