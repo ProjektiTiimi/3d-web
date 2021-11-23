@@ -30,21 +30,23 @@ const InvoicePDF = () => {
     try {
         tuloste =virtuaaliviivakoodi(options);
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        if(document.getElementById("barCodeImg")){
+            document.getElementById("barCodeImg")!.style.display = "none";
+        };
     }
 
-
     const { inputRef } = 
-        useBarcode({
-            value: tuloste,
-            options: {
-                format: "CODE128C",
-                background: '#ffffff',
-                height: 45,
-                width: 1,
-                fontSize: 11
-            }
-        })
+    useBarcode({
+        value: tuloste,
+        options: {
+            format: "CODE128C",
+            background: '#ffffff',
+            height: 45,
+            width: 1,
+            fontSize: 11
+        }
+    })
 
       
 
@@ -263,7 +265,7 @@ const InvoicePDF = () => {
                                 </td>
                             </tr>
                         </table>
-                        <div style={{height:"72px"}}>
+                        <div style={{height:"72px"}} id="barCodeImg">
                             <img ref={inputRef} />
                         </div>
                     </div>
