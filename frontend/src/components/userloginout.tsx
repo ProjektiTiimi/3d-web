@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { BehaviorSubject } from 'rxjs';
 
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser') || '{}'));
@@ -74,6 +75,9 @@ export default class UserLogin extends Component<any, any> {
         <h1>Kirjaudu</h1>
         Käyttäjätunnus: <input type="text" onChange={this.updateUsername}></input>
         Salasana: <input type="password" onChange={this.updatePassword}></input>
+      <Link to="/userregister">
+        Rekiströidy
+      </Link>
   
         <input type="submit" onClick={this.handleSubmit}></input>
         </div>
