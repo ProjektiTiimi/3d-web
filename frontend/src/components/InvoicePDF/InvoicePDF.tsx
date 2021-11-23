@@ -1,5 +1,5 @@
 import { useBarcode } from 'react-barcodes';
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import './invoicePDF.css'
@@ -29,6 +29,9 @@ const InvoicePDF = () => {
 
     try {
         tuloste =virtuaaliviivakoodi(options);
+        if(document.getElementById("barCodeImg")){
+            document.getElementById("barCodeImg")!.style.display = "block";
+        };
     } catch (error) {
         console.log(error);
         if(document.getElementById("barCodeImg")){
