@@ -2,7 +2,8 @@
 #source venv/bin/activate  On windows: venv/Scripts/activate
 #pip install --upgrade RESTinstance
 ***Settings***
-Library  REST    http://localhost:1337
+Library  REST    http://localhost:1337 
+                # 3d-web-api-1:1337
 
 *** Variables ***
 ${register-json}     {"username": "RobottiTesti", "password": "RobottiPassu" }

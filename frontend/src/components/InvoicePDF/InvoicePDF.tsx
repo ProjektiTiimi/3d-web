@@ -1,5 +1,5 @@
 import { useBarcode } from 'react-barcodes';
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import './invoicePDF.css'
@@ -14,6 +14,9 @@ const InvoicePDF = () => {
     const { defaultLineInfo, setDefaultLineInfo } = useContext(lineInfoContext);
     const virtuaaliviivakoodi = require('virtuaaliviivakoodi')
     const duedate = defaultInvoice.Erapaiva.substr(2,10).split("-").join("");
+    let totalTaxed:number = 0;
+    let totalTax:number = 0;
+    let total:number = 0;
 
     const options = {
         iban: defaultInvoice.Tilinumero,
@@ -26,22 +29,27 @@ const InvoicePDF = () => {
 
     try {
         tuloste =virtuaaliviivakoodi(options);
+        if(document.getElementById("barCodeImg")){
+            document.getElementById("barCodeImg")!.style.display = "block";
+        };
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        if(document.getElementById("barCodeImg")){
+            document.getElementById("barCodeImg")!.style.display = "none";
+        };
     }
 
-
     const { inputRef } = 
-        useBarcode({
-            value: tuloste,
-            options: {
-                format: "CODE128C",
-                background: '#ffffff',
-                height: 45,
-                width: 1,
-                fontSize: 11
-            }
-        })
+    useBarcode({
+        value: tuloste,
+        options: {
+            format: "CODE128C",
+            background: '#ffffff',
+            height: 45,
+            width: 1,
+            fontSize: 11
+        }
+    })
 
       
 
@@ -122,21 +130,54 @@ const InvoicePDF = () => {
                 </table>
             </header>
             <body className="invoicePDF-body">
-                <div className="invoicePDF-rows">
-                    <h2>invoicePDF-rows</h2>
-                    <h4>tähän laskun tiedot, ja kokonaissumma</h4>
+                <div className="invoicePDF-rows" style={{fontSize:"13px"}}>
+                    <table width="100%">
+                        <th className="lineInfo-c1">Selite</th>
+                        <th className="lineInfo-c2">Kpl</th>
+                        <th className="lineInfo-c3">à-hinta</th>
+                        <th className="lineInfo-c4">ALV %</th>
+                        <th className="lineInfo-c5">Yhteensä €</th>
 
                     {defaultLineInfo.map((item) => {
                         console.log("invoice: " + JSON.stringify(defaultLineInfo))
                         return(
                             <tr>
-                                <td>{item.selite}</td>
-                                <td>{item.kpl}</td>
-                                <td>{item.alv}%</td>
-                                <td>{item.hinta}€</td>
+                                <td className="lineInfo-c1">{item.selite}</td>
+                                <td className="lineInfo-c2">{item.kpl}</td>
+                                <td className="lineInfo-c3">{item.price}</td>
+                                <td className="lineInfo-c4">{item.alv}</td>
+                                <td className="lineInfo-c5">{item.total}</td>
                             </tr>
                         )
                     })}
+                    </table>
+                    <table width="100%">
+                        <tr>
+                            <td className="total-c1">
+                                <br></br>
+                                Yhteensä (veroton)
+                            </td>
+                            <td className="total-c2">
+                                <br></br>
+                                {defaultLineInfo.map((item) => {
+                                    total = total + item.price
+                                })}{total} €
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="total-c1">Veron osuus</td>
+                            <td className="total-c2">{defaultLineInfo.map((item) => {
+                                totalTax = totalTax + item.total * item.alv/100
+                            })}{totalTax} €</td>
+                        </tr>
+                        <tr>
+                            <td className="total-c3">YHTEENSÄ</td>
+                            <td className="total-c3">
+                                {defaultLineInfo.map((item) => {
+                                totalTaxed = +totalTaxed + +item.total;
+                            })}{totalTaxed} €</td>
+                        </tr>
+                    </table>
 
                 </div>
                 <div className="invoicePDF-invoice">
@@ -221,13 +262,13 @@ const InvoicePDF = () => {
                                     <table style={{width:"100%", height:"100%"}}>
                                         <tr>
                                             <td className="td noRightBorder noBottomBorder" style={{fontSize: "10px", lineHeight:"10px "}}>Euro</td>
-                                            <td className="td noRightBorder noBottomBorder" style={{verticalAlign:"middle", textAlign:"right"}}>120.00</td>
+                                            <td className="td noRightBorder noBottomBorder" style={{verticalAlign:"middle", textAlign:"right"}}>{totalTaxed}</td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
                         </table>
-                        <div style={{height:"72px"}}>
+                        <div style={{height:"72px"}} id="barCodeImg">
                             <img ref={inputRef} />
                         </div>
                     </div>

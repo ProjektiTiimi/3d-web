@@ -7,6 +7,8 @@ interface Customer{
     Postitusosoite: string;
     Postinumero: string; 
     Toimipaikka: string;
+    YTunnusError?: string;
+    NimiError?: string;
 }
 
 export default Customer;

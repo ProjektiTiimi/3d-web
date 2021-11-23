@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Customer from '../models/customer';
-
+import configData from "../config/configData.json"
 
 const Addcustomer = () => {
     const [input, setInput] = useState<Customer>({
@@ -8,7 +8,9 @@ const Addcustomer = () => {
         asiakkaanNimi: "",
         Postitusosoite: "",
         Postinumero: "",
-        Toimipaikka: ""
+        Toimipaikka: "",
+        YTunnusError: "",
+        NimiError: ""
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -18,33 +20,57 @@ const Addcustomer = () => {
         })
     }
 
+    const validate = () => {
+        let YTunnusError = "";
+        let NimiError = "";
+
+        if (!input.YTunnus) {
+            YTunnusError = "Y-tunnus ei voi olla tyhjä";         
+        }
+
+        if (!input.asiakkaanNimi) {
+            NimiError = "Yrityksen nimi ei voi olla tyhjä";
+        }
+
+        if (YTunnusError || NimiError) {
+            setInput({...input, YTunnusError, NimiError})
+            return false;
+        }
+
+        return true;
+    };
+
     const handleClick = (): void =>{
-        fetch('http://localhost:1337/customer', {
-            method: 'POST',
-            headers: { 'Content-type': 'application/json',
-            'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjQ0NzMwNn0.jI7gmVQ20WsbU3QvJijqhTfkjn8EtZyilUUFYs9jL9Q'},
-            body: JSON.stringify({
-                YTunnus: input.YTunnus,
-                asiakkaanNimi: input.asiakkaanNimi,
-                Postitusosoite: input.Postitusosoite,
-                Postinumero: input.Postinumero,
-                Toimipaikka: input.Toimipaikka
+        const isValid = validate();
+        if (isValid){
+            fetch(`${configData.API_URL}:${configData.API_PORT}/customer`, {
+                method: 'POST',
+                headers: { 'Content-type': 'application/json',
+                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjQ0NzMwNn0.jI7gmVQ20WsbU3QvJijqhTfkjn8EtZyilUUFYs9jL9Q'},
+                body: JSON.stringify({
+                    YTunnus: input.YTunnus,
+                    asiakkaanNimi: input.asiakkaanNimi,
+                    Postitusosoite: input.Postitusosoite,
+                    Postinumero: input.Postinumero,
+                    Toimipaikka: input.Toimipaikka
+                })
             })
-        })
-        .then(function(data){
-            console.log("Request succeeded with response ", data)            
-        })
-        .catch(function(error){
-            console.log("Request failed ", error)
-        })
-        setInput({
-            YTunnus: "",
-            asiakkaanNimi: "",
-            Postitusosoite: "",
-            Postinumero: "",
-            Toimipaikka: ""
-        })
-    }
+            .then(function(data){
+                console.log("Request succeeded with response ", data)            
+            })
+            .catch(function(error){
+                console.log("Request failed ", error);
+                alert("Asiakkaan lisäys epäonnistui " + error);
+            })
+            setInput({
+                YTunnus: "",
+                asiakkaanNimi: "",
+                Postitusosoite: "",
+                Postinumero: "",
+                Toimipaikka: ""
+            })
+        }        
+    };
 
     return(
         <div className="AddCustomer">
@@ -57,6 +83,9 @@ const Addcustomer = () => {
                     name="YTunnus"
                     value={input.YTunnus}
                 />
+                <div className="errorMessage">
+                    {input.YTunnusError}
+                </div>
                 <input 
                     type="text"
                     placeholder="Yrityksen nimi"
@@ -65,6 +94,9 @@ const Addcustomer = () => {
                     name="asiakkaanNimi"
                     value={input.asiakkaanNimi}
                 />
+                <div className="errorMessage">
+                    {input.NimiError}
+                </div>
                 <input 
                     type="text"
                     placeholder="Osoite"
@@ -81,6 +113,7 @@ const Addcustomer = () => {
                     name="Postinumero"
                     value={input.Postinumero}
                 />
+                
                 <input 
                     type="string"
                     placeholder="Kaupunki"

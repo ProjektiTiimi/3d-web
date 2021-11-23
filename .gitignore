@@ -3,3 +3,4 @@ output.xml
 report.html
 
 RobotFramework/venv
+backend/api/.env

@@ -2,8 +2,11 @@ import express, { Application} from 'express';
 import connect from './connect';
 import * as CustomerController from './routes/customerRoutes';
 import * as UserController from './routes/userRoutes';
+import * as InvoiceController from './routes/invoiceRoutes';
 import authJwt from './controllers/authController'
 import {PORT, DBURI} from './config/config';
+import path from 'path/posix';
+import { verify } from 'crypto';
 
 const app: Application = express();
 const db: string = DBURI;
@@ -41,7 +44,9 @@ app.post("/user/register", UserController.registerUser);
 app.post("/user/login", UserController.authenticateUser);
 app.delete("/user/:id", [authJwt.verifyToken], UserController.deleteUser);
 app.get("/user/:id", [authJwt.verifyToken], UserController.getUser);
-// TODO: invoice endpoints
+//Invoice endpoints
+app.post("/invoice", [authJwt.verifyToken], InvoiceController.addInvoice);
+app.get("/invoice", [authJwt.verifyToken], InvoiceController.allInvoices);
 
 const server = app.listen(app.get("port"), () => {
     console.log("App running on port ", app.get("port"));

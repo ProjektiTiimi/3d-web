@@ -3,7 +3,7 @@ import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import Invoice from '../models/Invoice';
 import invoiceContext from './invoiceContext'
 import customerContext from "./customerContext";
-
+//import configData from "../config/configData"
 
 const Invoiceinfo = () => {    
 
@@ -39,12 +39,18 @@ const Invoiceinfo = () => {
     
     const [checkNum, setCheckNum] = React.useState("2");
 
-    if (checked == true) {
-        input.Tarkistenumero = checkNum;
+    const checker = () => {
+        if (checked == true) {
+            input.Tarkistenumero = checkNum;
+        }
+        else if (checked == false) {
+            input.Tarkistenumero = "";
+        }
     }
-    else if (checked == false) {
-        input.Tarkistenumero = "";
-    }
+
+    useEffect ( () => {
+        checker();
+    }, [checked]);    
 
     const { defaultInvoice, setDefaultInvoice } = useContext(invoiceContext);
 
@@ -114,34 +120,6 @@ const Invoiceinfo = () => {
         let checknumber = (10 - (tNumber % 10)).toString();
         setCheckNum(checknumber);
     }
-
-
-    // const handleClick = (): void =>{
-    //     fetch('http://localhost:1337/customer', {
-    //         method: 'POST',
-    //         headers: { 'Content-type': 'application/json'},
-    //         body: JSON.stringify({
-    //             YTunnus: input.YTunnus,
-    //             asiakkaanNimi: input.asiakkaanNimi,
-    //             Postitusosoite: input.Postitusosoite,
-    //             Postinumero: input.Postinumero,
-    //             Toimipaikka: input.Toimipaikka
-    //         })
-    //     })
-    //     .then(function(data){
-    //         console.log("Request succeeded with response ", data)            
-    //     })
-    //     .catch(function(error){
-    //         console.log("Request failed ", error)
-    //     })
-    //     setInput({
-    //         YTunnus: "",
-    //         asiakkaanNimi: "",
-    //         Postitusosoite: "",
-    //         Postinumero: "",
-    //         Toimipaikka: ""
-    //     })
-    // }
 
     return(
         <div className="Invoice">

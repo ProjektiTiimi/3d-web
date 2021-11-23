@@ -2,23 +2,40 @@ import * as React from 'react';
 import { useContext, Component } from "react";
 import Customer from '../models/customer';
 import CustomerDiv from './customerDiv';
+import configData from "../config/configData.json"
 
 
 function Customerlist() {
+    let emptyCustomer:Customer = {
+        YTunnus: "",
+        asiakkaanNimi: "",
+        Postitusosoite: "",
+        Postinumero: "",
+        Toimipaikka: ""
+    }
     const [total, setTotal] = React.useState(0);
     const [counter, setCounter]:any = React.useState(0);
     const [customers, setCustomers] = React.useState<Customer[]>([]);
     const [input, setinput] = React.useState("");
-    const filteredList = customers.filter(Customer => {return Customer.asiakkaanNimi.toLowerCase().includes(input.toLowerCase())});
     const getData = async () => {
-        const response = await fetch('http://localhost:1337/customers', {
-            method: 'GET',
-            headers: { 'Content-type': 'application/json',
-                        'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjQ0NzMwNn0.jI7gmVQ20WsbU3QvJijqhTfkjn8EtZyilUUFYs9jL9Q'}
-        });
-        const data = await response.json();
-        setTotal(data.length);
-        setCustomers(data)
+        try {
+            const response = await fetch(`${configData.API_URL}:${configData.API_PORT}/customers`, {
+                method: 'GET',
+                headers: { 'Content-type': 'application/json',
+                            'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjQ0NzMwNn0.jI7gmVQ20WsbU3QvJijqhTfkjn8EtZyilUUFYs9jL9Q'}
+            });
+            const data = await response.json();
+            if(response.ok){
+                setTotal(data.length);
+                setCustomers(data)
+            }
+            else{
+                console.log("response OK failed: " + response.status + " " + response.statusText);
+            }
+        } catch (error) {
+            console.log("GetData failed, error:" + error);
+        }
+
     }
     React.useEffect(()=> {
         getData();
@@ -28,6 +45,7 @@ function Customerlist() {
         setTotal(filteredList.length)
     }, [input]);
 
+    let filteredList = customers.filter(Customer => {return Customer.asiakkaanNimi.toLowerCase().includes(input.toLowerCase())});
     const ClickPrev = () =>{
         if (counter>0 && counter < 10){
             setCounter(0)
@@ -68,6 +86,5 @@ function Customerlist() {
         </div>
     )
 }
-
 
 export default Customerlist

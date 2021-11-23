@@ -30,6 +30,11 @@ function Navbar() {
                             Lisää asiakas
                         </Link>
                     </li>
+                    <li >
+                        <Link to='/' className='nav-links-mobile' onClick={closeMobileMenu}>
+                            Kirjaudu ulos
+                        </Link>
+                    </li>
                 </ul>
                 <LogOutButton />
             </nav>

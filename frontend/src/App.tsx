@@ -22,29 +22,33 @@ import RegisterUser from './components/userregister';
 
 function App() {
   const [defaultCustomer, setDefaultCustomer] = useState({
-    YTunnus : "default",
-    asiakkaanNimi: "default",
-    Postitusosoite: "default",
-    Postinumero: "default",
-    Toimipaikka: "default"
+    YTunnus : "",
+    asiakkaanNimi: "",
+    Postitusosoite: "",
+    Postinumero: "",
+    Toimipaikka: ""
   },);
 
   const [defaultInvoice, setDefaultInvoice] = useState({    
-        Tilinumero: "default",
-        LaskunNumero: "default",
-        LaskunPvm: "default",
-        Erapaiva: "default",
-        Viitenumero: "default",
-        Viesti: "default",
-        Tarkistenumero: "default"
+        Tilinumero: "",
+        LaskunNumero: "",
+        LaskunPvm: "",
+        Erapaiva: "",
+        Viitenumero: "",
+        Viesti: "",
+        Tarkistenumero: ""
     },);
 
   const [defaultLineInfo, setDefaultLineInfo] = useState([{
         selite: "",
         kpl: 0,
         hinta: 0,
-        alv: ""
-  }],);
+        alv: 24,
+        price: 0,
+        total: 0,
+    }],);
+
+  const taxChecked = false
 
   const value = {defaultCustomer, setDefaultCustomer};
   const invoiceInfo = {defaultInvoice, setDefaultInvoice};
