@@ -253,3 +253,8 @@
   text-align: right;
   font-weight: bold;
 }
+
+.errorMessage {
+  font-size: 12px; 
+  color: red;
+}
