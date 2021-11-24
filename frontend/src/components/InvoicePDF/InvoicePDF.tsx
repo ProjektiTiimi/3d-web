@@ -14,26 +14,7 @@ const InvoicePDF = () => {
     const { defaultLineInfo, setDefaultLineInfo } = useContext(lineInfoContext);
     const virtuaaliviivakoodi = require('virtuaaliviivakoodi')
     const duedate = defaultInvoice.Erapaiva.substr(2,10).split("-").join("");
-    // let totalTaxed:number = 0;
-    // let totalTax:number = 0;
-    // let total:number = 0;
-
-    // const calculateTotals = () => {
-    //     defaultLineInfo.map((item) => {
-    //         totalTax = totalTax + item.total * item.alv/100
-    //     })
-    //     defaultLineInfo.map((item) => {
-    //         total = total + item.price
-    //     })
-    //     defaultLineInfo.map((item) => {
-    //         totalTaxed = +totalTaxed + +item.total;
-    //     })
-    // }
-
-    // useEffect(()=> {
-    //     calculateTotals()
-    // }, []);
-
+    
     function total() {
         let total:number = 0;
         defaultLineInfo.map((item) => {
