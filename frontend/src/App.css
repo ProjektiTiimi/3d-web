@@ -25,7 +25,8 @@
   display: flex;
   flex-direction: column;
   width: 30rem;
-  margin: 5rem auto
+  margin: 5rem auto;
+  max-width: 90%;
 }
 
 .AddCustomer-input{
@@ -91,14 +92,16 @@
   display: flex;
   flex-direction: column;
   width: 30rem;
-  margin: 5rem auto
+  margin: 5rem auto;
+  max-width: 90%;
 }
 
 .customerList{
   display: flex;
   flex-direction: column;
   width: 30rem;
-  margin: 5rem auto
+  margin: 5rem auto;
+  max-width: 90%;
 }
 
 .Invoice-input{
@@ -212,49 +215,4 @@
 .lineInfo-label{
   margin-left: 0.3rem;
   margin-right: 0.3rem;
-}
-
-.lineInfo-c1 {
-  width: 65%;
-  text-align: left;
-}
-
-.lineInfo-c2 {
-  width: 5%;
-  text-align: right;
-}
-
-.lineInfo-c3 {
-  width: 9%;
-  text-align: right;
-}
-
-.lineInfo-c4 {
-  width: 9%;
-  text-align: right;
-}
-
-.lineInfo-c5 {
-  width: 13%;
-  text-align: right;
-}
-
-.total-c1 {
-  width: 86%;
-  text-align: right;
-}
-
-.total-c2 {
-  text-align: right;
-}
-
-.total-c3 {
-  width: 86%;
-  text-align: right;
-  font-weight: bold;
-}
-
-.errorMessage {
-  font-size: 12px; 
-  color: red;
 }

@@ -51,8 +51,6 @@ const InvoicePDF = () => {
         }
     })
 
-      
-
     const ClickPDF = async () => {
         const element = document.getElementById("DivToPrint") as HTMLElement;
         const canvas = await html2canvas(element, {
@@ -69,8 +67,8 @@ const InvoicePDF = () => {
      
         pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
         pdf.save(`${defaultInvoice.LaskunNumero}.pdf`);
-      };
-
+    };
+    
     return(
         <div>
         <div className="invoicePDF" id="DivToPrint">
