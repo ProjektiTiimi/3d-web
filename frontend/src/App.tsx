@@ -56,8 +56,9 @@ function App() {
   return(
     <TestiContext.Provider value={value}>
       <Router>
+        <Navbar />
         <div className="App">
-          <Navbar />
+          
           {/*<Navigation/>*/}
           <Switch>
             <Route path="/" exact component={Homepage} />
