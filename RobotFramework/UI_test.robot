@@ -12,7 +12,7 @@ ${Browser}  Chrome
 ***Test Cases***
 Login
     Open Browser To Login Page
-    Set Selenium Speed  0.1
+    Set Selenium Speed  0.2
 
 Add Customer
     Navigate To Add Customer
@@ -24,6 +24,8 @@ Modify Customer
     Select Customer
     Modify Customer
 
+    
+
 Add Data For invoice
     Fill First Form Invalid Data
     Fill First Form Valid Data
@@ -32,10 +34,9 @@ Add Data For invoice
 ***Keywords***
 
 Open Browser To Login Page
-    Open Browser    ${URL}  ${Browser}
+    Open Browser    ${URL}  ${Browser}  
+    #options=add_argument("--ignore-certificate-errors"); add_experimental_option("excludeSwitches", ["enable-logging"]); add_argument('--window-size=1920,1080'); add_argument('--no-sandbox')
     Maximize Browser Window
-    Click Element       //*[@id="root"]/div/nav/a[2]/button
-    Location Should Contain     3000/sign-up
 
 Navigate To Add Customer
     Click Element       //*[@id="root"]/div/nav/ul/li[2]/a

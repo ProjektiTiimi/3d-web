@@ -16,12 +16,18 @@ function Customerlist() {
     const [total, setTotal] = React.useState(0);
     const [counter, setCounter]:any = React.useState(0);
     const [customers, setCustomers] = React.useState<Customer[]>([]);
-    const [input, setinput] = React.useState("");
+    const [input, setinput] = React.useState(""); 
+    const [token, setToken] = React.useState('');
+
+    let currentUser = localStorage.getItem('currentUser');
+
+
     const getData = async () => {
         try {
             const response = await fetch(`${configData.API_URL}:${configData.API_PORT}/customers`, {
                 method: 'GET',
-                headers: { 'Content-type': 'application/json'}
+                headers: { 'Content-type': 'application/json',
+                            'x-access-token' : JSON.parse(currentUser!).token}
             });
             const data = await response.json();
             if(response.ok){
@@ -37,6 +43,9 @@ function Customerlist() {
 
     }
     React.useEffect(()=> {
+        if (currentUser) {            
+            setToken(JSON.parse(currentUser!).token);
+        }
         getData();
     }, []);
 
