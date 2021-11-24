@@ -14,9 +14,30 @@ const InvoicePDF = () => {
     const { defaultLineInfo, setDefaultLineInfo } = useContext(lineInfoContext);
     const virtuaaliviivakoodi = require('virtuaaliviivakoodi')
     const duedate = defaultInvoice.Erapaiva.substr(2,10).split("-").join("");
-    let totalTaxed:number = 0;
-    let totalTax:number = 0;
-    let total:number = 0;
+    
+    function total() {
+        let total:number = 0;
+        defaultLineInfo.map((item) => {
+                    total = total + item.price * item.kpl
+                })
+        return((total*1).toFixed(2))
+    }
+
+    function totalTax() {
+        let totalTax:number = 0;
+        defaultLineInfo.map((item) => {
+                    totalTax = totalTax + item.total * item.alv/100
+                })
+        return((totalTax*1).toFixed(2))
+    }
+
+    function totalTaxed() {
+        let totalTaxed:number = 0;
+        defaultLineInfo.map((item) => {
+                    totalTaxed = +totalTaxed + +item.total;
+                })
+        return((totalTaxed*1).toFixed(2))
+    }
 
     const options = {
         iban: defaultInvoice.Tilinumero,
@@ -156,24 +177,16 @@ const InvoicePDF = () => {
                                 Yhteensä (veroton)
                             </td>
                             <td className="total-c2">
-                                <br></br>
-                                {defaultLineInfo.map((item) => {
-                                    total = total + item.price
-                                })}{total} €
+                                <br></br>{total()} €
                             </td>
                         </tr>
                         <tr>
                             <td className="total-c1">Veron osuus</td>
-                            <td className="total-c2">{defaultLineInfo.map((item) => {
-                                totalTax = totalTax + item.total * item.alv/100
-                            })}{totalTax} €</td>
+                            <td className="total-c2">{totalTax()} €</td>
                         </tr>
                         <tr>
                             <td className="total-c3">YHTEENSÄ</td>
-                            <td className="total-c3">
-                                {defaultLineInfo.map((item) => {
-                                totalTaxed = +totalTaxed + +item.total;
-                            })}{totalTaxed} €</td>
+                            <td className="total-c3">{totalTaxed()} €</td>
                         </tr>
                     </table>
 
