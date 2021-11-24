@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Customer from '../models/customer';
 import configData from "../config/configData.json"
 
@@ -12,6 +12,15 @@ const Addcustomer = () => {
         YTunnusError: "",
         NimiError: ""
     })
+    const [token, setToken] = useState('');
+
+    useEffect ( () => {
+        let currentUser = localStorage.getItem('currentUser');
+        if (currentUser) {            
+            let obj = JSON.parse(currentUser!);
+            setToken(obj.token);
+        }
+    }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInput({
@@ -39,14 +48,15 @@ const Addcustomer = () => {
 
         return true;
     };
-
+    //'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3Rpa8OkeXR0w6Rqw6QiLCJpYXQiOjE2Mzc3MzQwNTJ9.CMgr9At8bbJBslcNT484gbcI2-tuKiQ0qL72bPTVfck'
     const handleClick = (): void =>{
         const isValid = validate();
         if (isValid){
             fetch(`${configData.API_URL}:${configData.API_PORT}/customer`, {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json',
-                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjQ0NzMwNn0.jI7gmVQ20WsbU3QvJijqhTfkjn8EtZyilUUFYs9jL9Q'},
+                'x-access-token': token
+                },
                 body: JSON.stringify({
                     YTunnus: input.YTunnus,
                     asiakkaanNimi: input.asiakkaanNimi,
