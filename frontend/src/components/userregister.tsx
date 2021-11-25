@@ -31,12 +31,12 @@ export function RegisterUser(){
     return(
         <div className="AddCustomer">
         <h1>Rekisteröidy</h1>
-        Käyttäjätunnus: <input type="text" value={user.username} name="username" onChange={handleChange}></input>
-        Salasana: <input type="password" value={user.password} name="password" onChange={handleChange}></input>
-        Y-tunnus: <input type="text" value={user.ytunnus} name="ytunnus" onChange={handleChange}></input>
-        E-mail: <input type="text" value={user.email} name="email" onChange={handleChange}></input>
-        Tilinumero: <input type="text" value={user.tilinumero} name="tilinumero" onChange={handleChange}></input>
-        <input type="submit" onClick={Register}></input>
+        Käyttäjätunnus: <input type="text" value={user.username} name="username" onChange={handleChange} className="AddCustomer-input"></input>
+        Salasana: <input type="password" value={user.password} name="password" onChange={handleChange} className="AddCustomer-input"></input>
+        Y-tunnus: <input type="text" value={user.ytunnus} name="ytunnus" onChange={handleChange} className="AddCustomer-input"></input>
+        E-mail: <input type="text" value={user.email} name="email" onChange={handleChange} className="AddCustomer-input"></input>
+        Tilinumero: <input type="text" value={user.tilinumero} name="tilinumero" onChange={handleChange} className="AddCustomer-input"></input>
+        <input type="submit" onClick={Register} className="AddCustomer-btn"></input>
         </div>
     )
 }
