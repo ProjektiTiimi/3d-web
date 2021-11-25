@@ -31,7 +31,7 @@ function Navbar() {
                         </Link>
                     </li>
                     <li >
-                        <Link to='/' className='nav-links-mobile' onClick={closeMobileMenu}>
+                        <Link to='/userloginout' className='nav-links-mobile' onClick={closeMobileMenu}>
                             Kirjaudu ulos
                         </Link>
                     </li>

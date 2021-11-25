@@ -4,11 +4,17 @@ import bcrypt from 'bcrypt-nodejs';
 export interface IUser extends mongoose.Document {
     username: string;
     password: string;
+    ytunnus: string;
+    email: string;
+    iban: string;
 }
 
 export const UserSchema = new mongoose.Schema({
     username: { type: String, required: true },
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    ytunnus: { type: String, required: true },
+    email: { type: String, required: true },
+    iban: { type: String, required: true }
 })
 
 

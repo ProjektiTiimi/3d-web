@@ -13,7 +13,10 @@ export const registerUser = (req: Request, res: Response) => {
     // Create new user object
     const user = new User({
         username: req.body.username,
-        password: hashedPassword
+        password: hashedPassword,
+        ytunnus: req.body.ytunnus,
+        email: req.body.email,
+        iban: req.body.iban
     });
     
     // Does user exist already?
@@ -75,7 +78,10 @@ export const authenticateUser = (req: Request, res: Response) => {
         }, SECRETKEY);
         res.status(200).send({
             username: result.username,
-            token: token
+            token: token,
+            ytunnus: result.ytunnus,
+            email: result.email,
+            iban: result.iban
         });
     });
 

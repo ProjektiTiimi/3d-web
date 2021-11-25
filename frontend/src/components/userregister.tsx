@@ -29,7 +29,7 @@ export function RegisterUser(){
     }
 
     return(
-        <div className="register">
+        <div className="AddCustomer">
         <h1>Rekisteröidy</h1>
         Käyttäjätunnus: <input type="text" value={user.username} name="username" onChange={handleChange}></input>
         Salasana: <input type="password" value={user.password} name="password" onChange={handleChange}></input>
