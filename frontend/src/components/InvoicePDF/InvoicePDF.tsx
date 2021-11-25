@@ -16,13 +16,16 @@ const InvoicePDF = () => {
     const duedate = defaultInvoice.Erapaiva.substr(2,10).split("-").join("");
     const [email, setEmail] = useState('');
     const [ytunnus, setYtunnus] = useState('');
-    const [iban, setIban] = useState('');
+    const [nimi, setNimi] = useState('');
     
     useEffect(()=> {
         let currentUser = localStorage.getItem('currentUser');
         console.log("current user: " + currentUser)
         if (currentUser) {            
             let obj = JSON.parse(currentUser!);
+            setEmail(obj.email);
+            setYtunnus(obj.ytunnus);
+            setNimi(obj.username)
         }
     }, []);
 
@@ -244,7 +247,7 @@ const InvoicePDF = () => {
                             </tr>
                             <tr>
                                 <td style={{fontSize: "10px", textAlign:"right", padding:"5px"}}>Saaja <br /> Mottagare</td>
-                                <td>Saajan nimi</td>
+                                <td>{nimi}</td>
                                 <td></td>
                             </tr>
                             <tr>
