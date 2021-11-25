@@ -36,11 +36,10 @@ export default class UserLogin extends Component<any, any> {
       };
       return fetch(`${configData.API_URL}:${configData.API_PORT}/user/login`, reqOptions)
         .then(response => response.json())
-        .then(username =>{
-         localStorage.setItem('currentUser', JSON.stringify(username));
-         currentUserSubject.next(username);
-         console.log(username);
-          return username;
+        .then(user=>{
+         localStorage.setItem('currentUser', JSON.stringify(user));
+         currentUserSubject.next(user);
+          return user;
         });
   
     }

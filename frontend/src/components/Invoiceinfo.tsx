@@ -26,7 +26,7 @@ const Invoiceinfo = () => {
 
     
     const [input, setInput] = useState<Invoice>({
-        Tilinumero: defaultCustomer.YTunnus,
+        Tilinumero: "",
         LaskunNumero: invoiceNmbr.toString(),
         LaskunPvm: date,
         Erapaiva: dueDate,
@@ -47,6 +47,16 @@ const Invoiceinfo = () => {
             input.Tarkistenumero = "";
         }
     }
+
+
+    useEffect(()=> {
+        let currentUser = localStorage.getItem('currentUser');
+        console.log("currentuser: "+ currentUser)
+        if (currentUser) {            
+            let obj = JSON.parse(currentUser!);
+            setInput({... input, Tilinumero: obj.tilinumero})
+        }
+    }, []);
 
     useEffect ( () => {
         checker();
