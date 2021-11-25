@@ -42,7 +42,7 @@ const InvoicePDF = () => {
     const options = {
         iban: defaultInvoice.Tilinumero,
         reference: defaultInvoice.Viitenumero,
-        cents: 1225,
+        cents: +totalTaxed()*100,
         due: duedate,
       }
 
@@ -50,6 +50,7 @@ const InvoicePDF = () => {
 
     try {
         tuloste =virtuaaliviivakoodi(options);
+        console.log("options.cents: " + options.cents + " options.reference: " + options.reference + " options.duedate: " +options.due + " options.tilinumero: " +options.iban)
         if(document.getElementById("barCodeImg")){
             document.getElementById("barCodeImg")!.style.display = "block";
         };
@@ -273,7 +274,7 @@ const InvoicePDF = () => {
                                     <table style={{width:"100%", height:"100%"}}>
                                         <tr>
                                             <td className="td noRightBorder noBottomBorder" style={{fontSize: "10px", lineHeight:"10px "}}>Euro</td>
-                                            <td className="td noRightBorder noBottomBorder" style={{verticalAlign:"middle", textAlign:"right"}}>{totalTaxed}</td>
+                                            <td className="td noRightBorder noBottomBorder" style={{verticalAlign:"middle", textAlign:"right"}}>{totalTaxed()}</td>
                                         </tr>
                                     </table>
                                 </td>
