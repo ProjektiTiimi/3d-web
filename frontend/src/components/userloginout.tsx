@@ -77,11 +77,11 @@ export default class UserLogin extends Component<any, any> {
         Käyttäjätunnus: <input type="text" onChange={this.updateUsername} className="AddCustomer-input"></input>
         Salasana: <input type="password" onChange={this.updatePassword} className="AddCustomer-input"></input>
       <Link to="/register" className="AddCustomer-btn">
-        Rekiströidy
+        Rekisteröidy
       </Link>
   
         <input type="submit" onClick={this.handleSubmit} className="AddCustomer-btn"></input>
-        <button onClick={this.logOut}>Kirjaudu ulos</button>
+        <button onClick={this.logOut} className="AddCustomer-btn" >Kirjaudu ulos</button>
         </div>
       );
     }

@@ -16,7 +16,7 @@ export const registerUser = (req: Request, res: Response) => {
         password: hashedPassword,
         ytunnus: req.body.ytunnus,
         email: req.body.email,
-        iban: req.body.iban
+        tilinumero: req.body.tilinumero
     });
     
     // Does user exist already?
@@ -81,7 +81,7 @@ export const authenticateUser = (req: Request, res: Response) => {
             token: token,
             ytunnus: result.ytunnus,
             email: result.email,
-            iban: result.iban
+            tilinumero: result.tilinumero
         });
     });
 

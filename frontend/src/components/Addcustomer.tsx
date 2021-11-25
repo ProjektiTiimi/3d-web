@@ -16,6 +16,7 @@ const Addcustomer = () => {
 
     useEffect ( () => {
         let currentUser = localStorage.getItem('currentUser');
+        console.log("current user: " + currentUser)
         if (currentUser) {            
             let obj = JSON.parse(currentUser!);
             setToken(obj.token);
@@ -81,6 +82,10 @@ const Addcustomer = () => {
             })
         }        
     };
+
+    const testi = () => {
+        console.log("asdasd")
+    }
 
     return(
         <div className="AddCustomer">

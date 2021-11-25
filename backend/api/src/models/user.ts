@@ -6,7 +6,7 @@ export interface IUser extends mongoose.Document {
     password: string;
     ytunnus: string;
     email: string;
-    iban: string;
+    tilinumero: string;
 }
 
 export const UserSchema = new mongoose.Schema({
@@ -14,7 +14,7 @@ export const UserSchema = new mongoose.Schema({
     password: { type: String, required: true },
     ytunnus: { type: String, required: true },
     email: { type: String, required: true },
-    iban: { type: String, required: true }
+    tilinumero: { type: String, required: true }
 })
 
 
