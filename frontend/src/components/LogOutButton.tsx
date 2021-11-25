@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 export function LogOutButton() {
     return (
         <Link to='userloginout'>
-            <button className='btn'>Kirjaudu ulos
+            <button className='btn'>
+            <i className="fas fa-sign-in-alt" />
             </button>
         </Link>
     );
