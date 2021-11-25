@@ -18,7 +18,7 @@ export function RegisterUser(){
     }
 
     const Register = () =>{
-        const {username, password} = user
+        const {username, password, ytunnus, email, tilinumero} = user
         if (username && password){
             axios.post(`${configData.API_URL}:${configData.API_PORT}/user/register`, user)
             .then(res=>console.log(res));
@@ -29,7 +29,7 @@ export function RegisterUser(){
     }
 
     return(
-        <div className="register">
+        <div className="AddCustomer">
         <h1>Rekisteröidy</h1>
         Käyttäjätunnus: <input type="text" value={user.username} name="username" onChange={handleChange}></input>
         Salasana: <input type="password" value={user.password} name="password" onChange={handleChange}></input>

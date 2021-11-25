@@ -37,6 +37,7 @@
 
 .AddCustomer-btn{
   padding: 8px 20px;
+  margin: 3px;
   border-radius: 4px;
   outline: none;
   border: none;
@@ -45,6 +46,8 @@
   cursor: pointer;
   background-color: #000;
   display: inline-block;
+  text-align: center;
+  text-decoration: none;
 }
 
 .AddCustomer-btn:hover{
