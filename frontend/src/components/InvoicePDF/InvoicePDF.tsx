@@ -14,7 +14,19 @@ const InvoicePDF = () => {
     const { defaultLineInfo, setDefaultLineInfo } = useContext(lineInfoContext);
     const virtuaaliviivakoodi = require('virtuaaliviivakoodi')
     const duedate = defaultInvoice.Erapaiva.substr(2,10).split("-").join("");
+    const [email, setEmail] = useState('');
+    const [ytunnus, setYtunnus] = useState('');
+    const [iban, setIban] = useState('');
     
+    useEffect(()=> {
+        let currentUser = localStorage.getItem('currentUser');
+        console.log("current user: " + currentUser)
+        if (currentUser) {            
+            let obj = JSON.parse(currentUser!);
+        }
+    }, []);
+
+
     function total() {
         let total:number = 0;
         defaultLineInfo.map((item) => {
@@ -197,18 +209,18 @@ const InvoicePDF = () => {
                         <table className="invoicePDF-billerTable">
                             <tr>
                                 <td className="bt 1">
-                                    <div>Firman Nimi OY</div>
-                                    <div>firman osoite</div>
-                                    <div>osoitteen loppuosa</div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
                                 </td>
                                 <td className="bt 2">
-                                    <div>puhelinnumero</div>
-                                    <div>email</div>
-                                    <div>websivu</div>
+                                    <div></div>
+                                    <div>{email}</div>
+                                    <div></div>
                                 </td>
                                 <td className="bt 3 last">
-                                    <div>Y-Tunnus</div>
-                                    <div>ALV-tunnus</div>
+                                    <div>{ytunnus}</div>
+                                    <div></div>
                                 </td>
                             </tr>
                             <tr>
