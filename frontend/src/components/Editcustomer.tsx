@@ -7,13 +7,14 @@ const Editcustomer = () => {
     const querystring = window.location.search;
     const urlParams = new URLSearchParams(querystring);
     const id = urlParams.get('id');
+    let currentUser = localStorage.getItem('currentUser');
 
     const getData = async () => {
         console.log(id)
         const response = await fetch(`${configData.API_URL}:${configData.API_PORT}/customer/` + id, {
             method:'GET',
             headers:{'Content-type':'application/json',
-                    'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjQ0NzMwNn0.jI7gmVQ20WsbU3QvJijqhTfkjn8EtZyilUUFYs9jL9Q'}
+                    'x-access-token': JSON.parse(currentUser!).token}
                      });
         const data = await response.json()
         console.log(data)
@@ -39,11 +40,11 @@ const Editcustomer = () => {
         })
     }
 
-    const handleClick = (): void =>{
+    const editcustomer = (): void =>{
         fetch(`${configData.API_URL}:${configData.API_PORT}/customer/` + id, {
             method: 'PATCH',
             headers: { 'Content-type': 'application/json',
-                        'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmltaSIsImlhdCI6MTYzNjAyOTM1MX0._9mpMIpYLJD_FwxjbfpjufnBM1MaV59FArj87tJGRl4'},
+                        'x-access-token': JSON.parse(currentUser!).token},
             body: JSON.stringify({
                 YTunnus: input.YTunnus,
                 asiakkaanNimi: input.asiakkaanNimi,
@@ -54,6 +55,24 @@ const Editcustomer = () => {
         })
         .then(function(data){
             console.log("Request succeeded with response ", data)
+            document.getElementById("savedText")!.hidden = false
+        })
+        .catch(function(error){
+            console.log("Request failed ", error)
+            document.getElementById("savedText")!.textContent = "Virhe"
+            document.getElementById("savedText")!.hidden = false
+        })
+    }
+
+    const deleteCustomer = (): void => {
+        fetch(`${configData.API_URL}:${configData.API_PORT}/customer/` + id, {
+            method: 'DELETE',
+            headers: { 'Content-type': 'application/json',
+                        'x-access-token': JSON.parse(currentUser!).token}
+        })
+        .then(function(data){
+            console.log("Request succeeded with response ", data)
+            document.getElementById("savedText")!.textContent = "Poistettu"
             document.getElementById("savedText")!.hidden = false
         })
         .catch(function(error){
@@ -108,8 +127,13 @@ const Editcustomer = () => {
                 />            
             <button 
                 className = "AddCustomer-btn"
-                onClick={handleClick}>
+                onClick={editcustomer}>
                 Tallenna
+            </button>
+            <button 
+                className = "AddCustomer-btn"
+                onClick={deleteCustomer}>
+                Poista
             </button>
             <h4 id="savedText" hidden>Tallennettu</h4>
         </div>
