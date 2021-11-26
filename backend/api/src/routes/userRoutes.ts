@@ -94,7 +94,7 @@ export const deleteUser = (req: Request, res: Response) => {
             console.log('1');
             res.status(500).end();
         }else{
-            User.deleteOne({id: req.params.id}, (err: any, result: any) => {
+            User.deleteOne({_id: req.params.id}, (err: any, result: any) => {
                 if (err){
                     console.log('2');
                     console.log(result);
