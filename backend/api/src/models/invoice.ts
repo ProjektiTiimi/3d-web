@@ -15,20 +15,17 @@ export interface Invoice extends mongoose.Document{
         Toimipaikka: String;
     }
     laskunTiedot:{
-        selite: String;
-        kpl: Number;
-        hinta: Number;
-        alv: Number;
-        price: Number;
-        total: Number;
+        viitenumero: String;
+        eräpäivä: String;
+        riviTiedot: String;
     }    
 }
 
-export const InvoiceSchema = new mongoose.Schema({        
-    
+export const InvoiceSchema = new mongoose.Schema({
+
     laskuttaja:{
         ytunnus:{type: String, required: true, get: decrypt, set: encrypt},
-        email:{type: String, required: false, get: decrypt, set: encrypt},
+        email:{type: String, required: true, get: decrypt, set: encrypt},
         tilinumero:{type: String, required: true, get: decrypt, set: encrypt}
     },
     asiakkaanTiedot:{
@@ -39,13 +36,9 @@ export const InvoiceSchema = new mongoose.Schema({
         Toimipaikka: {type: String, required: true, get: decrypt, set: encrypt},
     },
     laskunTiedot:{
-        selite: {type: String,  required: true, get: decrypt, set: encrypt},
-        kpl: {type: Number,  required: true, get: decrypt, set: encrypt},
-        hinta: {type: Number,  required: true, get: decrypt, set: encrypt},
-        alv: {type: Number,  required: true, get: decrypt, set: encrypt},
-        price: {type: Number,  required: true, get: decrypt, set: encrypt},
-        total: {type: Number,  required: true, get: decrypt, set: encrypt}
-
+        viitenumero: {type: String, required: true, get: decrypt, set: encrypt},
+        eräpäivä: {type: String, required: true, get: decrypt, set: encrypt},
+        riviTiedot: {type: String, required: true, get: decrypt, set: encrypt}
     }},
     {
         versionKey: false,
