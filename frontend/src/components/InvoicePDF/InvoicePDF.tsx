@@ -6,6 +6,7 @@ import './invoicePDF.css'
 import CustomerContext from '../customerContext';
 import invoiceContext from "../invoiceContext";
 import lineInfoContext from "../LineInfoContext";
+import configData from '../../config/configData.json';
 
 
 const InvoicePDF = () => {
@@ -17,6 +18,9 @@ const InvoicePDF = () => {
     const [email, setEmail] = useState('');
     const [ytunnus, setYtunnus] = useState('');
     const [nimi, setNimi] = useState('');
+    const [token, setToken] = useState('');
+    const [boolean, setBoolean] = useState<boolean>();
+    const [message, setMessage] = useState('');
     
     useEffect(()=> {
         let currentUser = localStorage.getItem('currentUser');
@@ -25,7 +29,8 @@ const InvoicePDF = () => {
             let obj = JSON.parse(currentUser!);
             setEmail(obj.email);
             setYtunnus(obj.ytunnus);
-            setNimi(obj.username)
+            setNimi(obj.username);
+            setToken(obj.token);
         }
     }, []);
 
@@ -105,6 +110,56 @@ const InvoicePDF = () => {
         pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
         pdf.save(`${defaultInvoice.LaskunNumero}.pdf`);
     };
+
+    const savePDF = () => {
+
+        let laskunTiedot = defaultLineInfo.map((item) => {
+            let info: string = 'Selite: ' + item.selite + 
+                               ', Kpl: ' + item.kpl +
+                               ', Alv%: ' + item.alv +
+                               ', Hinta(ilman alvia): ' + item.price +
+                               ', Hinta: ' + item.total;
+            return info});
+        let riviTiedot: string = laskunTiedot.toString();
+
+        fetch(`${configData.API_URL}:${configData.API_PORT}/invoice`, {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json',
+            'x-access-token': token
+            },
+            body: JSON.stringify({
+                laskuttaja:{
+                    ytunnus: ytunnus,
+                    email: email,
+                    tilinumero: defaultInvoice.Tilinumero
+                },
+                asiakkaanTiedot:{
+                    YTunnus: defaultCustomer.YTunnus,
+                    asiakkaanNimi: defaultCustomer.asiakkaanNimi,
+                    Postitusosoite: defaultCustomer.Postitusosoite,
+                    Postinumero: defaultCustomer.Postinumero,
+                    Toimipaikka: defaultCustomer.Toimipaikka
+                },
+                laskunTiedot:{
+                    viitenumero: defaultInvoice.Viitenumero,
+                    eräpäivä: defaultInvoice.Erapaiva,
+                    riviTiedot: riviTiedot
+                }
+                
+            })
+        })
+        .then(function(data){
+            console.log("Request succeeded with response ", data);
+            setMessage('Lasku tallennettu onnistuneesti');
+            setBoolean(true);
+        })
+        .catch(function(error){
+            console.log("Request failed ", error);
+            setBoolean(false)
+            setMessage('Laskun tallentaminen epäonnistui');
+        })
+
+    }
     
     return(
         <div>
@@ -304,10 +359,15 @@ const InvoicePDF = () => {
         </div>
         <div style={{marginTop:"50px"}}></div>
         <div style={{textAlign:"center", marginBottom:"50px"}}>
-            <button className="printPDFButton" onClick={ClickPDF}>Lataa PDF</button>
-            <button className="savePDFButton">Tallenna lasku</button>
+            <button className="printPDFButton" onClick={ClickPDF}>Lataa PDF</button> 
+            <button className="savePDFButton" onClick={savePDF}>Tallenna lasku</button>
+            <p className={boolean ? "responseMessage":"responseErrorMessage"}>
+                    { boolean ? message : message}
+            </p>
         </div>
+            
         </div>
+        
         
 )}
 
