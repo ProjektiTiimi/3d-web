@@ -32,7 +32,7 @@ function Navbar() {
                     </li>
                     <li >
                         <Link to='/userloginout' className='nav-links-mobile' onClick={closeMobileMenu}>
-                            Kirjaudu ulos
+                            <i className="fas fa-sign-in-alt" />
                         </Link>
                     </li>
                 </ul>
