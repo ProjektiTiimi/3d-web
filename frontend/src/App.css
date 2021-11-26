@@ -66,6 +66,11 @@
   font-size: 1.4rem;
 }
 
+.errorMessage{
+  color: red;
+  font-size: 12px;
+}
+
 .NavigationBar{
   list-style-type: none;
   margin: 0;
