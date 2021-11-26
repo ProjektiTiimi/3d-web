@@ -6,7 +6,7 @@ Library  REST    http://localhost:1337
                 # 3d-web-api-1:1337
 
 *** Variables ***
-${register-json}     {"username": "RobottiTesti", "password": "RobottiPassu" }
+${register-json}     {"username": "RobottiTesti", "password": "RobottiPassu", "ytunnus": "RFYtunnus", "email": "mail@robot.com", "tilinumero": "FI49 5000 9420 0287 30"}
 ${message}
 ${login-token}
 ${customer-json}    {"YTunnus": "RobotYTunnus", "asiakkaanNimi": "Robotti", "Postitusosoite": "Robottiosoite", "Postinumero": "11111", "Toimipaikka": "Robotland"}
