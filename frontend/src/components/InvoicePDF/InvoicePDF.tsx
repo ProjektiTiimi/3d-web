@@ -361,7 +361,7 @@ const InvoicePDF = () => {
         <div style={{textAlign:"center", marginBottom:"50px"}}>
             <button className="printPDFButton" onClick={ClickPDF}>Lataa PDF</button> 
             <button className="savePDFButton" onClick={savePDF}>Tallenna lasku</button>
-            <p className={boolean ? "responseMessage":"responseErrorMessage"}>
+            <p className={boolean ? "responseMessage":"errorResponseMessage"}>
                     { boolean ? message : message}
             </p>
         </div>
