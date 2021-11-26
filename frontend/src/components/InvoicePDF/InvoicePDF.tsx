@@ -94,6 +94,52 @@ const InvoicePDF = () => {
     })
 
     const ClickPDF = async () => {
+        let laskunTiedot = defaultLineInfo.map((item) => {
+            let info: string = 'Selite: ' + item.selite + 
+                               ', Kpl: ' + item.kpl +
+                               ', Alv%: ' + item.alv +
+                               ', Hinta(ilman alvia): ' + item.price +
+                               ', Hinta: ' + item.total;
+            return info});
+        let riviTiedot: string = laskunTiedot.toString();
+
+        fetch(`${configData.API_URL}:${configData.API_PORT}/invoice`, {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json',
+            'x-access-token': token
+            },
+            body: JSON.stringify({
+                laskuttaja:{
+                    ytunnus: ytunnus,
+                    email: email,
+                    tilinumero: defaultInvoice.Tilinumero
+                },
+                asiakkaanTiedot:{
+                    YTunnus: defaultCustomer.YTunnus,
+                    asiakkaanNimi: defaultCustomer.asiakkaanNimi,
+                    Postitusosoite: defaultCustomer.Postitusosoite,
+                    Postinumero: defaultCustomer.Postinumero,
+                    Toimipaikka: defaultCustomer.Toimipaikka
+                },
+                laskunTiedot:{
+                    viitenumero: defaultInvoice.Viitenumero,
+                    eräpäivä: defaultInvoice.Erapaiva,
+                    riviTiedot: riviTiedot
+                }
+                
+            })
+        })
+        .then(function(data){
+            console.log("Request succeeded with response ", data);
+            setMessage('Lasku tallennettu onnistuneesti');
+            setBoolean(true);
+        })
+        .catch(function(error){
+            console.log("Request failed ", error);
+            setBoolean(false)
+            setMessage('Laskun tallentaminen epäonnistui');
+        })
+
         const element = document.getElementById("DivToPrint") as HTMLElement;
         const canvas = await html2canvas(element, {
             scale: 3,
@@ -359,8 +405,7 @@ const InvoicePDF = () => {
         </div>
         <div style={{marginTop:"50px"}}></div>
         <div style={{textAlign:"center", marginBottom:"50px"}}>
-            <button className="printPDFButton" onClick={ClickPDF}>Lataa PDF</button> 
-            <button className="savePDFButton" onClick={savePDF}>Tallenna lasku</button>
+            <button className="printPDFButton" onClick={ClickPDF}>Lataa PDF</button>
             <p className={boolean ? "responseMessage":"errorResponseMessage"}>
                     { boolean ? message : message}
             </p>
