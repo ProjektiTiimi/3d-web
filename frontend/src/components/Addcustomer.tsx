@@ -3,6 +3,9 @@ import Customer from '../models/customer';
 import configData from "../config/configData.json"
 
 const Addcustomer = () => {
+    const [boolean, setBoolean] = useState<boolean>();
+    const [message, setMessage] = useState('');
+
     const [input, setInput] = useState<Customer>({
         YTunnus: "",
         asiakkaanNimi: "",
@@ -49,7 +52,7 @@ const Addcustomer = () => {
 
         return true;
     };
-    //'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3Rpa8OkeXR0w6Rqw6QiLCJpYXQiOjE2Mzc3MzQwNTJ9.CMgr9At8bbJBslcNT484gbcI2-tuKiQ0qL72bPTVfck'
+    
     const handleClick = (): void =>{
         const isValid = validate();
         if (isValid){
@@ -67,11 +70,14 @@ const Addcustomer = () => {
                 })
             })
             .then(function(data){
-                console.log("Request succeeded with response ", data)            
+                console.log("Request succeeded with response ", data);
+                setMessage('Asiakas lisätty onnistuneesti');
+                setBoolean(true);          
             })
             .catch(function(error){
                 console.log("Request failed ", error);
-                alert("Asiakkaan lisäys epäonnistui " + error);
+                setBoolean(false)
+                setMessage('Laskun tallentaminen epäonnistui');
             })
             setInput({
                 YTunnus: "",
@@ -82,10 +88,6 @@ const Addcustomer = () => {
             })
         }        
     };
-
-    const testi = () => {
-        console.log("asdasd")
-    }
 
     return(
         <div className="AddCustomer">
@@ -142,6 +144,9 @@ const Addcustomer = () => {
                 onClick={handleClick}>
                 Lisää asiakas
             </button>
+            <div className={boolean ? "responseMessage":"responseErrorMessage"}>
+                    { boolean ? message : message}
+            </div>
         </div>
     )
 }
