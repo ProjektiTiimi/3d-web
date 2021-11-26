@@ -48,7 +48,7 @@ export const updateCustomer = (req: Request, res: Response) => {
 
 // Delete customer
 export const deleteCustomer = (req: Request, res: Response) => {
-    const customer = Customer.findOne({_id: req.params.id}, (err: any) => {
+    const customer = Customer.findOneAndDelete({_id: req.params.id}, (err: any) => {
         if (err){
             res.status(500).end();
         }else{
