@@ -91,14 +91,21 @@ export const deleteUser = (req: Request, res: Response) => {
     
     const user = User.findOne({_id: req.params.id}, (err: any) => {
         if (err){
+            console.log('1');
             res.status(500).end();
         }else{
-            User.deleteOne({id: req.params.id});
-            if (err){
-                res.status(500).end();
-            } else{
-                res.status(200).end();
-            }
+            User.deleteOne({id: req.params.id}, (err: any, result: any) => {
+                if (err){
+                    console.log('2');
+                    console.log(result);
+                    res.status(500).end();
+                } else{
+                    console.log('3');
+                    console.log(result);
+                    res.status(200).end();
+                }
+            });
+
         }
     });
 }
