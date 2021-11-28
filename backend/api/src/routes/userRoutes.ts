@@ -36,7 +36,7 @@ export const registerUser = (req: Request, res: Response) => {
                     }, SECRETKEY);
                     res.send({
 
-                        message: '1 User created succesfully.',
+                        message: '1 User created successfully.',
                         token: token
                     });
                 }
