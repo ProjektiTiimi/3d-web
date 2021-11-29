@@ -37,4 +37,28 @@ ENV MONGO_INITDB_DATABASE <Lisää tietokannan nimi>
  
  Compassin saa ladattua osoitteesta: https://www.mongodb.com/try/download/compass
  
+ ## MongoDB käyttö komentoriviltä
+ 
+ MongoDB:tä voi käyttää myös komentoriviltä käyttäen mongo shelliä, minkä saa auki komentamalla:
+ 
+ ```
+ mongosh -u <käyttäjätunnus> -p <salasana>
+ ```
+ 
+ Hyödyllisiä komentoja:
+ 
+ Näytä tietokannat tai näytä collectionit:
+ ```
+ show dbs
+ show collections
+ ```
+ Valitse tietokanta tai collection
+ ```
+ use <tietokannan nimi>
+ use <collectionin nimi>
+ ```
+ Näytä collectionin sisältö
+ ```
+ db.<collectionin nimi>.find()
+ ```
  
