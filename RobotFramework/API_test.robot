@@ -30,7 +30,7 @@ Route Tests
 Register
     POST  /user/register    ${register-json}
     ${message}=  REST.Output  response body message
-    Should Be true  '${message}' == '1 User created succesfully.' or '${message}' == 'User already exists'
+    Should Be true  '${message}' == '1 User created successfully.' or '${message}' == 'User already exists'
 
 Login With False Credentials
     POST  /user/login
