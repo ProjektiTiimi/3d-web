@@ -17,6 +17,6 @@ docker --version
 1. Kloonaa tai lataa projekti omalle koneelle
 2. Avaa terminaali ja siirry projektin pääkansioon /3D-WEB
 3. Aja komento:
-````
+```
 docker-compose up --build
 ```
