@@ -1,5 +1,16 @@
 # Robot Framework -testit
 
+Robot-testien ajamista varten koneelle on asennettava python ja robot framework.
+
+Python saadaan ladattua osoitteesta https://www.python.org/downloads/
+
+Suorita ladattu .exe-tiedosto ja valitse asennusvalikossa Install Now ja tarkista että täpät on valittuna kohdissa 'Install launcher for all users' ja 'Add Python x.x to PATH'
+
+Pythonin asennuksen jälkeen Robot Framework saadaan asennettua komennolla:
+```
+pip install robotframework
+```
+
 ## DB_test.robot
 
 Tietokantatesti lisää uuden asiakkaan tietokantaan, etsii sen kannasta käyttäen asiakkaan nimeä, ja tallentaa asiakkaan tiedot (myös MongoDB:n automaattisesti lisäämän _id:n) globaaliksi muuttujaksi.
@@ -61,3 +72,20 @@ source venv/bin/activate
 Tämän jälkeen kirjaston asennus ja testin käynnistyminen toimii kuten paikallisessa ajossakin.
 
 ## UI_test.robot
+
+Käyttöliittymätesti on tehty ensisijaisesti projektin demoamista varten, ja toimii vain paikallisessa ajossa. Testi käyttää selenium-kirjastoa ja Google Chrome -selainta, ja vaatii toimiakseen chromedriverin. Tarvittavat ohjelmat saadaan asennettua komennoilla:
+
+SeleniumLibrary:
+```
+pip install --upgrade robotframework-seleniumlibrary
+```
+Webdrivermanager ja chromedriver:
+```
+pip install webdrivermanager
+webdrivermanager chrome
+```
+Vaadittavien asennusten jälkeen testin voi suorittaa komennolla:
+```
+robot .\UI_test.robot
+```
+Testi käy läpi sivuston perustoiminnot; rekisteröitymisen, kirjautumisen, asiakkaan lisäämisen sekä editoimisen ja PDF-laskun toiminnan. Avainsanan "Set Selenium Speed" arvoa muuttamalla voi hidastaa tai nopeuttaa testiä tarpeen mukaan. 
