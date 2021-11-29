@@ -12,7 +12,7 @@ npm --version
 ```
 Jos haluat että sovellus toimii kaikilla ominaisuuksilla, projektin "backend" osio pitää myös ajaa.
 
-###Kun esivaatimukset ovat suoritettu:
+### Kun esivaatimukset ovat suoritettu:
 
 1. Kloonaa tai lataa projekti omalle koneelle
 2. Avaa terminaali ja siirry projektin kansioon /3D-WEB/frontend
