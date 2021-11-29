@@ -35,3 +35,7 @@ Sovellus jää terminaaliin pyörimään ja käynnistää itsensä uudestaan jok
 [INFO] 17:26:01 Restarting: \api\src\config\config.ts has been modified
 App running on port  12343
 ```
+
+### Routet
+
+Uusia routeja voi vapaasti lisätä ja muokata. Käyttäessä [authJwt.verifyToken] sovellus vaatii localStoragessa olevan hyväksytyn tokenin, ennenkuin päästää etenemään reitillä.
