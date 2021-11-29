@@ -20,3 +20,6 @@ docker --version
 ```
 docker-compose up --build
 ```
+###
+
+[Robot-readme](https://github.com/ProjektiTiimi/3d-web/blob/main/RobotFramework/README.md)

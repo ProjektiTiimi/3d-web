@@ -180,6 +180,5 @@ Remove Test Customer
     Page Should Contain  Poistettu
 
 Remove Test User
-    Log To Console  TODO: Käyttäjän poisto UI-käyttöliittymän kautta / Uloskirjautuminen vähintään
     Click Element  //*[@id="root"]/nav/ul/li[1]/a
     Click Element  //*[@id="root"]/div/div/div[4]/div[3]/button[1]
