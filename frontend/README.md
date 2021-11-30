@@ -16,8 +16,12 @@ Jos haluat että sovellus toimii kaikilla ominaisuuksilla, projektin "backend" o
 
 1. Kloonaa tai lataa projekti omalle koneelle
 2. Avaa terminaali ja siirry projektin kansioon /3D-WEB/frontend
-3. Aja komento:
+3. Asentaaksesi sovellukset tarvittavat lähdekoodit, aja komento:
 ```
-npm run
+npm install
+```
+4. Käynnistääksesi sovelluksen, aja komento:
+```
+npm start
 ```
 Sovellus aukeaa uudessa välilehdessä oletusselaimellasi.
