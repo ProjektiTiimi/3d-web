@@ -45,7 +45,7 @@ Projekti koostuu neljästä osiosta jotka pyörivät omissa konteissaan. Jokaise
 
 ### Projektin osasten readme-tiedostot alla
 
-[Robot-readme](https://github.com/ProjektiTiimi/3d-web/tree/main/backend/database#readme)
+[Robot-readme](https://github.com/ProjektiTiimi/3d-web/tree/main/RobotFramework#readme)
 
 [Database-readme](https://github.com/ProjektiTiimi/3d-web/tree/main/backend/database#readme)
 
