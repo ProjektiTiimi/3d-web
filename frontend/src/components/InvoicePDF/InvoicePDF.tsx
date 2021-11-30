@@ -384,7 +384,7 @@ const InvoicePDF = () => {
                                     <div>Eräpäivä<br />Förf.dag</div>
                                 </td>
                                 <td style={{padding: "5px", borderRight: "2px solid #333", width: "17%"}}>
-                                    {defaultInvoice.LaskunPvm}
+                                    {defaultInvoice.Erapaiva}
                                 </td>
                                 <td className="price">
                                     <table style={{width:"100%", height:"100%"}}>
