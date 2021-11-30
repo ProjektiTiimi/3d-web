@@ -28,6 +28,7 @@ npm install
 ```
 4. Aja komento:
 ```
+npm run setKeys
 npm run dev
 ```
 Sovellus jää terminaaliin pyörimään ja käynnistää itsensä uudestaan jokaisen tallennetun muutoksen jälkeen:
