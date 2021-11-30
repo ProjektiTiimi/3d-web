@@ -12,7 +12,7 @@ Asennuksen jälkeen voit testata, että docker on asentunut onnistuneesti ajamal
 docker --version
 ```
 
-### 
+### Projektin käynnistys
 
 1. Kloonaa tai lataa projekti omalle koneelle
 2. Avaa terminaali ja siirry projektin pääkansioon /3D-WEB
@@ -23,3 +23,5 @@ docker-compose up --build
 ###
 
 [Robot-readme](https://github.com/ProjektiTiimi/3d-web/blob/main/RobotFramework/README.md)
+
+[Database-readme](https://github.com/ProjektiTiimi/3d-web/tree/main/backend/database/README.md)
